@@ -382,11 +382,11 @@ public class HomeFragment extends Fragment {
                 mRecyclerView.setAdapter(myAdapter);
                 progressBarHome.setVisibility(View.INVISIBLE);
             }else {
-                new AlertDialog.Builder(activity)
-                        .setTitle("日記載入失敗")
-                        .setMessage("請確認網路是否連通!!")
-                        .setPositiveButton("OK", null)
-                        .show();
+//                new AlertDialog.Builder(activity)
+//                        .setTitle("日記載入失敗")
+//                        .setMessage("請確認網路是否連通!!")
+//                        .setPositiveButton("OK", null)
+//                        .show();
             }
         }
 
@@ -467,11 +467,11 @@ public class HomeFragment extends Fragment {
                 mRecyclerView.setAdapter(myAdapter);
                 progressBarHome.setVisibility(View.INVISIBLE);
             }else {
-                new AlertDialog.Builder(activity)
-                        .setTitle("日記載入失敗")
-                        .setMessage("請確認網路是否連通!!")
-                        .setPositiveButton("OK", null)
-                        .show();
+//                new AlertDialog.Builder(activity)
+//                        .setTitle("日記載入失敗")
+//                        .setMessage("請確認網路是否連通!!")
+//                        .setPositiveButton("OK", null)
+//                        .show();
             }
         }
 

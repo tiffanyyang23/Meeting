@@ -26,6 +26,9 @@ public class sqlReturn{
     public static String[] tagName3;
     public static String[] date3;
     public static String[] friendName;
-
+    // 此為抓好友
+    public static String textViewContext4 = null;
+    public static int SearchCountFriendList;
+    public static String[] friendListName;
 
 }

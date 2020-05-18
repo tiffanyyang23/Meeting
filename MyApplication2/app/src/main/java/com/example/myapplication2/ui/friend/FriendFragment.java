@@ -47,10 +47,7 @@ import java.util.Map;
 public class FriendFragment extends Fragment {
 
     private ConstraintLayout mLayout;
-    private Button mBtnChange;
-    private Button mGoToHandWrite;
-    private Button mGoToDiary;
-    private Button mGoToOCR;
+    private Button mBtnChange, mGoToHandWrite, mGoToDiary, mGoToOCR;
     private boolean changeBtn = false;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -58,7 +55,6 @@ public class FriendFragment extends Fragment {
     private LinkedList<HashMap<String,String>> data;
     private MyAdapter myAdapter;
     private ProgressBar progressBarFriend;
-
 
 
     public static int FriendTag;
@@ -76,6 +72,17 @@ public class FriendFragment extends Fragment {
         mLayout = mainActivity.findViewById(R.id.testConstraint);
         mLayout.setBackgroundColor(0xFFFFFFFF);
         mLayout.setVisibility(View.INVISIBLE);
+
+        searchFriendList();
+
+        final ImageButton imBtnSearchFriend = root.findViewById(R.id.imBtnSearchFriend);
+        imBtnSearchFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FriendFragment.super.getActivity(),FriendListActivity.class);
+                startActivity(intent);
+            }
+        });
 
         if(mGoToHandWrite.isEnabled()){
             mGoToHandWrite.setEnabled(false);
@@ -216,14 +223,65 @@ public class FriendFragment extends Fragment {
                 mRecyclerView.setAdapter(myAdapter);
                 progressBarFriend.setVisibility(View.INVISIBLE);
             }else {
-                new AlertDialog.Builder(activity)
-                        .setTitle("日記載入失敗")
-                        .setMessage("請確認網路是否連通!!")
-                        .setPositiveButton("OK", null)
-                        .show();
+                progressBarFriend.setVisibility(View.INVISIBLE);
+//                new AlertDialog.Builder(activity)
+//                        .setTitle("日記載入失敗")
+//                        .setMessage("請確認網路是否連通!!")
+//                        .setPositiveButton("OK", null)
+//                        .show();
             }
         }
 
+    }
+
+    public void searchFriendList(){
+        String uid = LoginActivity.GetUserID;
+        Map<String,String> map = new HashMap<>();
+        map.put("command", "friendInfoList");
+        map.put("uid", uid);
+        new searchFriendList(super.getActivity()).execute((HashMap)map);
+    }
+
+    private class searchFriendList extends HttpURLConnection_AsyncTask {
+
+        // 建立弱連結
+        WeakReference<Activity> activityReference;
+        searchFriendList(Activity context){
+            activityReference = new WeakReference<>(context);
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            JSONObject jsonObject = null;
+            JSONArray jsonArray = null;
+            boolean status = false;
+            // 取得弱連結的Context
+            Activity activity = activityReference.get();
+            if (activity == null || activity.isFinishing()) return;
+
+            try {
+                jsonObject = new JSONObject(result);
+
+                sqlReturn.textViewContext4 = jsonObject.getString("results");
+                sqlReturn.SearchCountFriendList = jsonObject.getInt("rowcount");
+                jsonArray = new JSONArray(sqlReturn.textViewContext4);
+                sqlReturn.friendListName = new String[sqlReturn.SearchCountFriendList];
+                for(int i = 0; i<sqlReturn.SearchCountFriendList; i++){
+                    JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
+                    sqlReturn.friendListName[i] = obj.getString("friendName01");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (sqlReturn.textViewContext4!=null){
+                //Toast.makeText(activity, String.valueOf(sqlReturn.SearchCountMood), Toast.LENGTH_LONG).show();
+            }else {
+//                new AlertDialog.Builder(activity)
+//                        .setTitle("日記載入失敗")
+//                        .setMessage("請確認網路是否連通!!")
+//                        .setPositiveButton("OK", null)
+//                        .show();
+            }
+        }
     }
 
     // 變化背景動畫
