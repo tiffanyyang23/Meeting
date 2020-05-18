@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.friend.FriendFragment">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/imBtnPersonal"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:scaleType="centerCrop"
+                app:srcCompat="@mipmap/icon_btnuser_foreground"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="1dp" />
+
+            <TextView
+                android:id="@+id/title_Friend"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:text="@string/title_friend"
+                android:textColor="#7dd8d3"
+                android:textSize="24sp" />
+
+            <ImageButton
+                android:id="@+id/imBtnSearch"
+                android:layout_width="54dp"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:scaleType="centerCrop"
+                app:srcCompat="@mipmap/icon_btnfriendlist_foreground"
+                tools:layout_editor_absoluteX="357dp"
+                tools:layout_editor_absoluteY="1dp" />
+        </LinearLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:id="@+id/FriendLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#FFFFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerView_1"
+                android:layout_width="0dp"
+                android:layout_height="620dp"
+                
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btnChange3"
+        style="@style/btn_primary"
+        android:layout_width="82dp"
+        android:layout_height="83dp"
+        android:background="@drawable/ic_add_circle_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,262 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="btn_diarybtn" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/btn_diarybtn</item>
+    </style>
+    <style name="btn_primary" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/btn_primary</item>
+    </style>
+    <style name="btn_primary2" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/btn_primary2</item>
+    </style>
+	<style name="btn_clothes" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_clothes_icon_foreground</item>
+    </style>
+    <style name="btn_food" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_food_icon_foreground</item>
+    </style>
+    <style name="btn_sun" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_sun</item>
+    </style>
+    <style name="btn_suncloud" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_suncloud_foreground</item>
+    </style>
+    <style name="btn_cloud" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_cloud_foreground</item>
+    </style>
+    <style name="btn_rain" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_rain_foreground</item>
+    </style>
+    <style name="btn_thunder" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_thunder_foreground</item>
+    </style>
+    <style name="btn_travel" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>-->
+        <item name="android:background">@drawable/btn_primary2</item>
+        <!--<item name="android:padding">10dip</item>-->
+        <item name="android:drawableTop">@mipmap/ic_travel_icon_foreground</item>
+    </style>
+
+
+    <style name="btn_emotion" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>-->
+        <item name="android:background">@drawable/btn_primary2</item>
+        <!--<item name="android:padding">10dip</item>-->
+        <item name="android:drawableTop">@mipmap/ic_emotion_icon_foreground</item>
+    </style>
+
+
+    <style name="btn_play" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <!--<item name="android:padding">10dip</item>-->
+        <item name="android:drawableTop">@mipmap/ic_play_icon_foreground</item>
+    </style>
+
+    <style name="btn_skip" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/diary2_bars</item>
+        <!--<item name="android:padding">10dip</item>-->
+
+    </style>
+	
+	<!--第三頁-->
+    <style name="btn_taiwan" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/diary3</item>
+        <item name="android:drawableTop">@mipmap/ic_taiwan_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_china" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/diary3</item>
+        <item name="android:drawableTop">@mipmap/ic_china_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_france" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/diary3</item>
+        <item name="android:drawableTop">@mipmap/ic_france_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_ider" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/diary3</item>
+        <item name="android:drawableTop">@mipmap/ic_ider_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_italy" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/diary3</item>
+        <item name="android:drawableTop">@mipmap/ic_italy_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_japan" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/diary3</item>
+        <item name="android:drawableTop">@mipmap/ic_japan_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_kong" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/diary3</item>
+        <item name="android:drawableTop">@mipmap/ic_kong_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_korea" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/diary3</item>
+        <item name="android:drawableTop">@mipmap/ic_korea_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_random" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/diary3</item>
+        <item name="android:drawableTop">@mipmap/ic_random_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+	<!-- 第四頁-->
+
+    <style name="btn_nowhy" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_nowhy_icon_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_hungry" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_hungry_icon_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_party" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_party_icon_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_celebrate" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_celeberating_icon_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_tired" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_wanteat_icon_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_yummy" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_yummy_icon_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_try" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_primary2</item>
+        <item name="android:drawableTop">@mipmap/ic_try_icon_foreground</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+
+    <style name="btn_user" parent="@android:style/Widget.Button">
+        <!--<item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>-->
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_usershape</item>
+        <!--<item name="android:padding">10dip</item>-->
+    </style>
+</resources>

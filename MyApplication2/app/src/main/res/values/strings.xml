@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">引導日記</string>
+    <string name="title_diary">引導日記</string>
+    <string name="title_handwritediary">手寫日記</string>
+    <string name="title_OCR">OCR</string>
+    <string name="title_home">歷史紀錄</string>
+    <string name="title_dashboard">統計圖表</string>
+    <string name="title_notifications">日記</string>
+    <string name="title_friend">社群</string>
+    <string name="title_maybelike">可能喜歡</string>
+    <string name="title_activity_login">登入</string>
+    <string name="prompt_email">帳號</string>
+    <string name="prompt_password">密碼</string>
+    <string name="action_sign_in">登入</string>
+    <string name="action_sign_in_short">登入</string>
+
+
+</resources>

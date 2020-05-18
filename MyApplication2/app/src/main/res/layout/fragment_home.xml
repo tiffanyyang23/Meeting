@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imBtnPersonal"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:scaleType="centerCrop"
+            app:srcCompat="@mipmap/icon_btnuser_foreground" />
+
+        <TextView
+            android:id="@+id/title_Dashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:textColor="#7dd8d3"
+            android:textSize="24sp"
+            android:text="@string/title_home" />
+
+        <ImageButton
+            android:id="@+id/imBtnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_search_black_24dp" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/HistoryLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="0dp"
+            android:layout_height="130dp"
+            app:layout_constraintBottom_toTopOf="@+id/HistoryRecyclerview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
+            <!--選擇分類-->
+
+            <Button
+                android:id="@+id/searchBtnMood"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:background="#fff"
+                android:text="心情"
+                android:textColor="#77D8D5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.044"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.23" />
+
+            <!--TAG-->
+
+            <Button
+                android:id="@+id/searchBtnTag"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:background="#fff"
+                android:text="主題"
+                android:textColor="#77D8D5"
+                app:layout_constraintBottom_toBottomOf="@+id/searchBtnMood"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toEndOf="@+id/searchBtnMood"
+                app:layout_constraintTop_toTopOf="@+id/searchBtnMood"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/searchBtn1"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="#FDBCD0"
+                android:text="美食"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/searchBtnMood"
+                app:layout_constraintTop_toBottomOf="@+id/searchBtnMood"
+                app:layout_constraintVertical_bias="0.515" />
+
+            <Button
+                android:id="@+id/searchBtn2"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="#FDD3BC"
+                android:text="購物"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/searchBtn1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toEndOf="@+id/searchBtn1"
+                app:layout_constraintTop_toTopOf="@+id/searchBtn1"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/searchBtn3"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="#EDE400"
+                android:text="感情"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/searchBtn2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.316"
+                app:layout_constraintStart_toEndOf="@+id/searchBtn1"
+                app:layout_constraintTop_toTopOf="@+id/searchBtn2"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <Button
+                android:id="@+id/searchBtn4"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="#A3FCAA"
+                android:text="旅遊"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/searchBtn3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.57"
+                app:layout_constraintStart_toEndOf="@+id/searchBtn1"
+                app:layout_constraintTop_toTopOf="@+id/searchBtn3"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/searchBtn5"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="#A3FCAA"
+                android:text="娛樂"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/searchBtn4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.821"
+                app:layout_constraintStart_toEndOf="@+id/searchBtn1"
+                app:layout_constraintTop_toTopOf="@+id/searchBtn4"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/buttonTest"
+                android:layout_width="60dp"
+                android:layout_height="38dp"
+                android:enabled="false"
+                android:text="測試"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="#77D8D5">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.69"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/request" />
+
+                <Button
+                    android:id="@+id/btnWriteTodayDiary"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:background="#77D8D5"
+                    android:text="TODAY"
+                    android:textColor="#fff"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.703"
+                    app:layout_constraintStart_toEndOf="@+id/imageView7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.2" />
+
+                <TextView
+                    android:id="@+id/DateTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2020/05/07"
+                    android:textColor="#fff"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView7"
+                    app:layout_constraintHorizontal_bias="0.512"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.328" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="食"
+                    android:textColor="#fff"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView7"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/DateTime"
+                    app:layout_constraintTop_toBottomOf="@+id/DateTime"
+                    app:layout_constraintVertical_bias="0.19999999" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/HistoryRecyclerview"
+            android:layout_width="0dp"
+            android:layout_height="342dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+        <Button
+            android:id="@+id/btnChange"
+            style="@style/btn_primary"
+            android:layout_width="82dp"
+            android:layout_height="83dp"
+            android:background="@drawable/ic_add_circle_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBarHome"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/btnChange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+            app:layout_constraintVertical_bias="0.332" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
