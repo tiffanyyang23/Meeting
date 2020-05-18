@@ -13,18 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication2.MainActivity;
 import com.example.myapplication2.R;
+import com.example.myapplication2.sqlReturn;
 
 public class SocialArticalActivity extends AppCompatActivity {
 
-    private TextView SocialDiaryTitle,SocialUserName,SocialDiaryDateTime;
+    private TextView SocialDiaryTitle,SocialUserName,SocialDiaryDateTime,txtSocialContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_socialartical);
 
-        String[] a = {"陳詩庭","陳昱","楊景婷","王振宇","藍允謙"};
-        String[] b = {"2020/05/01","2020/05/02","2020/05/03","2020/05/04","2020/05/05"};
-        String[] c = {"食","購物","旅遊","感情","休閒娛樂"};
 
         final ImageButton imbtnReturnToSocial = findViewById(R.id.imbtnReturnToSocial);
         imbtnReturnToSocial.setOnClickListener(new View.OnClickListener() {
@@ -38,11 +36,13 @@ public class SocialArticalActivity extends AppCompatActivity {
         });
 
         SocialUserName = findViewById(R.id.SocialUserName);
-        SocialUserName.setText(a[FriendFragment.Tag]);
+        SocialUserName.setText(sqlReturn.friendName[FriendFragment.FriendTag]);
         SocialDiaryDateTime = findViewById(R.id.SocialDiaryDateTime);
-        SocialDiaryDateTime.setText(b[FriendFragment.Tag]);
+        SocialDiaryDateTime.setText(sqlReturn.date3[FriendFragment.FriendTag]);
         SocialDiaryTitle = findViewById(R.id.SocialDiaryTitle);
-        SocialDiaryTitle.setText(c[FriendFragment.Tag]);
+        SocialDiaryTitle.setText(sqlReturn.tagName3[FriendFragment.FriendTag]);
+        txtSocialContext = findViewById(R.id.txtSocialContext);
+        txtSocialContext.setText(sqlReturn.content3[FriendFragment.FriendTag]);
 
     }
     // 擋住手機上回上一頁鍵

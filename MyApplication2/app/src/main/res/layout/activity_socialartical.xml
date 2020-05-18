@@ -116,7 +116,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/txtSocialContext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="start|top"

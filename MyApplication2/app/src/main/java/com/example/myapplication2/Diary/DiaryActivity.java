@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.myapplication2.Guidor;
 import com.example.myapplication2.Login.LoginActivity;
 import com.example.myapplication2.Login.RegisterActivity;
 import com.example.myapplication2.MainActivity;
@@ -23,12 +24,17 @@ public class DiaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
 
+        //final Guidor guidor = new Guidor(getApplicationContext(),"diary.db",null,1);
+
+
         // 前往下一頁 sun -----------------------------------------------
         final Button btnsun = findViewById(R.id.btn_sun);
         btnsun.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                //guidor.setMood("心情1");
                 txtMood ="今天心情超好";
+                //txtMood = guidor.getDiary();
                 Intent registerIntent = new Intent(DiaryActivity.this, DiaryTagActivity.class);
                 DiaryActivity.this.startActivity(registerIntent);
             }

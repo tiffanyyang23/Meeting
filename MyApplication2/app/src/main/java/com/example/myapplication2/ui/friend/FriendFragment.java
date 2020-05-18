@@ -1,6 +1,7 @@
 package com.example.myapplication2.ui.friend;
 
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,11 +12,13 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -25,12 +28,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication2.Diary.DiaryActivity;
+import com.example.myapplication2.HttpURLConnection_AsyncTask;
+import com.example.myapplication2.Login.LoginActivity;
 import com.example.myapplication2.MainActivity;
 import com.example.myapplication2.R;
+import com.example.myapplication2.sqlReturn;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class FriendFragment extends Fragment {
 
@@ -45,10 +57,11 @@ public class FriendFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private LinkedList<HashMap<String,String>> data;
     private MyAdapter myAdapter;
+    private ProgressBar progressBarFriend;
 
 
 
-    public static int Tag;
+    public static int FriendTag;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -59,6 +72,7 @@ public class FriendFragment extends Fragment {
         mGoToHandWrite = mainActivity.findViewById(R.id.goToHandwritebutton);
         mGoToDiary = mainActivity.findViewById(R.id.goToDiarybutton);
         mGoToOCR = mainActivity.findViewById(R.id.goToOCRbutton);
+        progressBarFriend = root.findViewById(R.id.progressBarFriend);
         mLayout = mainActivity.findViewById(R.id.testConstraint);
         mLayout.setBackgroundColor(0xFFFFFFFF);
         mLayout.setVisibility(View.INVISIBLE);
@@ -78,34 +92,21 @@ public class FriendFragment extends Fragment {
 
         mBtnChange = root.findViewById(R.id.btnChange3);
         mBtnChange.setOnClickListener(btnChangeColorOnClick);
-
-        // 這裡是 adapter
         mRecyclerView = root.findViewById(R.id.RecyclerView_1);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(FriendFragment.super.getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        doData();
-        myAdapter = new MyAdapter();
-        mRecyclerView.setAdapter(myAdapter);
-
-
-
+        progressBarFriend.setVisibility(View.VISIBLE);
+        searchFriend();
 
 
         return root;
     }
 
     private void doData(){
-
-        String[] a = {"陳詩庭","陳昱","楊景婷","王振宇","藍允謙"};
-        String[] b = {"2020/05/01","2020/05/02","2020/05/03","2020/05/04","2020/05/05"};
-        String[] c = {"食","購物","旅遊","感情","休閒娛樂"};
         data = new LinkedList<>();
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < sqlReturn.SearchCountFriend; i++){
             HashMap<String,String> row = new HashMap<>();
-            row.put("place_text",a[i]);
-            row.put("place_description_text",b[i]);
-            row.put("tag_text",c[i]);
+            row.put("place_text",sqlReturn.friendName[i]);
+            row.put("place_description_text",sqlReturn.date3[i]);
+            row.put("tag_text",sqlReturn.tagName3[i]);
             data.add(row);
         }
     }
@@ -126,7 +127,7 @@ public class FriendFragment extends Fragment {
                 itemView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
-                        Tag = getAdapterPosition();
+                        FriendTag = getAdapterPosition();
                         Intent intent = new Intent(FriendFragment.super.getActivity(),SocialArticalActivity.class);
                         startActivity(intent);
                     }
@@ -158,7 +159,74 @@ public class FriendFragment extends Fragment {
         }
     }
 
+    // 此為社群好友貼文全抓
+    public void searchFriend(){
+        String uid = LoginActivity.GetUserID;
+        Map<String,String> map = new HashMap<>();
+        map.put("command", "friendList");
+        map.put("uid", uid);
+        new searchFriend(super.getActivity()).execute((HashMap)map);
+    }
+    private class searchFriend extends HttpURLConnection_AsyncTask {
 
+        // 建立弱連結
+        WeakReference<Activity> activityReference;
+        searchFriend(Activity context){
+            activityReference = new WeakReference<>(context);
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            JSONObject jsonObject = null;
+            JSONArray jsonArray = null;
+            boolean status = false;
+            // 取得弱連結的Context
+            Activity activity = activityReference.get();
+            if (activity == null || activity.isFinishing()) return;
+
+            try {
+                jsonObject = new JSONObject(result);
+
+                sqlReturn.textViewContext3 = jsonObject.getString("results");
+                sqlReturn.SearchCountFriend = jsonObject.getInt("rowcount");
+                jsonArray = new JSONArray(sqlReturn.textViewContext3);
+                sqlReturn.content3 = new String[sqlReturn.SearchCountFriend];
+                sqlReturn.tagName3 = new String[sqlReturn.SearchCountFriend];
+                sqlReturn.mood3 = new String[sqlReturn.SearchCountFriend];
+                sqlReturn.date3 = new String[sqlReturn.SearchCountFriend];
+                sqlReturn.friendName = new String[sqlReturn.SearchCountFriend];
+                for(int i = 0; i<sqlReturn.SearchCountFriend; i++){
+                    JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
+                    sqlReturn.content3[i] = obj.getString("content");
+                    sqlReturn.tagName3[i] = obj.getString("tagName");
+                    sqlReturn.mood3[i] = obj.getString("mood");
+                    sqlReturn.date3[i] = obj.getString("date");
+                    sqlReturn.friendName[i] = obj.getString("friendName01");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (sqlReturn.textViewContext3!=null){
+                //Toast.makeText(activity, String.valueOf(sqlReturn.SearchCountMood), Toast.LENGTH_LONG).show();
+                doData();
+                // 這裡是 adapter
+                mRecyclerView.setHasFixedSize(true);
+                mLayoutManager = new LinearLayoutManager(FriendFragment.super.getActivity());
+                mRecyclerView.setLayoutManager(mLayoutManager);
+                myAdapter = new MyAdapter();
+                mRecyclerView.setAdapter(myAdapter);
+                progressBarFriend.setVisibility(View.INVISIBLE);
+            }else {
+                new AlertDialog.Builder(activity)
+                        .setTitle("日記載入失敗")
+                        .setMessage("請確認網路是否連通!!")
+                        .setPositiveButton("OK", null)
+                        .show();
+            }
+        }
+
+    }
+
+    // 變化背景動畫
     private View.OnClickListener btnChangeColorOnClick = new View.OnClickListener() {
         public void onClick(View v) {
             int iBackColorRedVal, iBackColorRedEnd;

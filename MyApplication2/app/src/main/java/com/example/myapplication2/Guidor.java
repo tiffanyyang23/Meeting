@@ -27,7 +27,7 @@ public class Guidor {
     // propSeq : 5W1H的排序組合，總個數可能會少於 6
     // diaryContentNoSeq : 由DB裡的Sentence-Pattern的編號組成的排序組合，且每一個prop中只會有一個子元素被選取( 0 ~ 6 個編號被選取)
     private ArrayList<String> propSeq = new ArrayList<>(), diaryContentNoSeq = new ArrayList<>();
-    Guidor(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version){
+    public Guidor(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version){
         init();
         this.DBHelper = new DBHelper(context, name, factory, version);
         //openDB();
@@ -171,6 +171,24 @@ public class Guidor {
         SQLiteDatabase db = DBHelper.getWritableDatabase();
         StringBuilder sb = new StringBuilder();
         Cursor cursor = null;
+        if (this.diary.equals("")){
+            String[] mood_pattern = {"我今天", "今天", "今天我"};
+            String[] mood_pattern_1 = {};
+            switch (mood_option){
+                case "心情1":
+                    mood_pattern_1 = new String[]{"心情很棒", "心情很讚", "心情很好", "心情特別好", "心情十分愉悅", "心情十分雀躍", "心情很愉快"};
+                    break;
+                case "心情2":
+                    break;
+                case "心情3":
+                    break;
+                case "心情4":
+                    break;
+                case "心情5":
+                    break;
+            }
+            this.diary = mood_pattern[(int)(Math.random()*mood_pattern.length)] + mood_pattern_1[(int)(Math.random()*mood_pattern_1.length)];
+        }
         sb.append(this.diary);
         for (int i=propSeq.size()-addDiaryContentNoSeq.size(); i<propSeq.size(); i++){
             String index = "", pattern = "", replace = "", punctuation = "";
