@@ -1,4 +1,4 @@
-package com.example.myapplication2;
+package com.example.myapplication2.Diary;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -629,6 +629,6 @@ public class Guidor {
             case "心情5":
                 break;
         }
-        this.diary = mood_pattern[(int)(Math.random()*mood_pattern.length)] + mood_pattern_1[(int)(Math.random()*mood_pattern_1.length)];
+        this.diary = mood_pattern[(int)(Math.random()*mood_pattern.length)] + mood_pattern_1[(int)(Math.random()*mood_pattern_1.length)] + "，";
     }
 }
