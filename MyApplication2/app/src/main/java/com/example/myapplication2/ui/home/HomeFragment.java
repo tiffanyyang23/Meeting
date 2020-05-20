@@ -17,18 +17,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.myapplication2.Diary.DiaryActivity;
 import com.example.myapplication2.HttpURLConnection_AsyncTask;
 import com.example.myapplication2.Login.LoginActivity;
 import com.example.myapplication2.MainActivity;
 import com.example.myapplication2.R;
-import com.example.myapplication2.SplashLoginActivity;
 import com.example.myapplication2.sqlReturn;
 
 import org.json.JSONArray;
@@ -36,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
+import java.sql.Ref;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -57,7 +57,6 @@ public class HomeFragment extends Fragment {
     private HomeFragment.MyAdapter myAdapter;
     private Button btnWriteTodayDiary;
     public static int homeTag;
-    public static int count;
     private Button searchBtnMood;
     private Button searchBtnTag;
     private Button searchBtn1;
@@ -66,8 +65,8 @@ public class HomeFragment extends Fragment {
     private Button searchBtn4;
     private Button searchBtn5;
     private Button buttonTest;
-    public static boolean test1 = false;
     private ProgressBar progressBarHome;
+    private SwipeRefreshLayout RefreshLayoutHome;
 
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
@@ -112,7 +111,23 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(HomeFragment.super.getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        RefreshLayoutHome = root.findViewById(R.id.RefreshLayoutHome);
+        RefreshLayoutHome.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if(buttonTest.equals("晴天")||buttonTest.equals("時晴")||buttonTest.equals("多雲")||buttonTest.equals("陣雨")||buttonTest.equals("雷雨")){
+                    searchByMood();
+                }else if(buttonTest.equals("美食")){
+                    searchByTag();
+                }else{
+                    history();
+                }
+            }
+        });
+
         doData();
+
         myAdapter = new MyAdapter();
         mRecyclerView.setAdapter(myAdapter);
 
@@ -231,13 +246,66 @@ public class HomeFragment extends Fragment {
 
     // 此為全抓
     //----------------------------------------------------------------------------------------------
+    public void history(){
+        String uid = sqlReturn.GetUserID;
+        Map<String,String> map = new HashMap<>();
+        map.put("command", "history");
+        map.put("uid", uid);
+        new history(super.getActivity()).execute((HashMap)map);
+    }
+
+    public class history extends HttpURLConnection_AsyncTask {
+
+        // 建立弱連結
+        WeakReference<Activity> activityReference;
+        history(Activity context){
+            activityReference = new WeakReference<>(context);
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            JSONObject jsonObject = null;
+            JSONArray jsonArray = null;
+            boolean status = false;
+            // 取得弱連結的Context
+            Activity activity = activityReference.get();
+            if (activity == null || activity.isFinishing()) return;
+
+            try {
+                jsonObject = new JSONObject(result);
+                sqlReturn.LoginTextViewContext = jsonObject.getString("results");
+                sqlReturn.LoginCount = jsonObject.getInt("rowcount");
+                jsonArray = new JSONArray(sqlReturn.LoginTextViewContext);
+                sqlReturn.LoginContent = new String[sqlReturn.LoginCount];
+                sqlReturn.LoginTagName = new String[sqlReturn.LoginCount];
+                sqlReturn.LoginMood = new String[sqlReturn.LoginCount];
+                sqlReturn.LoginDate = new String[sqlReturn.LoginCount];
+                for(int i = 0; i<sqlReturn.LoginCount; i++){
+                    JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
+                    sqlReturn.LoginContent[i] = obj.getString("content");
+                    sqlReturn.LoginTagName[i] = obj.getString("tagName");
+                    sqlReturn.LoginMood[i] = obj.getString("mood");
+                    sqlReturn.LoginDate[i] = obj.getString("date");
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (sqlReturn.LoginTextViewContext!=null){
+                doData();
+                RefreshLayoutHome.setRefreshing(false);
+
+            }else {
+
+            }
+        }
+
+    }
     private void doData(){
-        count = SplashLoginActivity.count;
         data = new LinkedList<>();
-        for(int i = 0; i < count; i++){
+        for(int i = 0; i < sqlReturn.LoginCount; i++){
             HashMap<String,String> row = new HashMap<>();
-            row.put("textTitle",SplashLoginActivity.mood[i]);
-            row.put("textDescription",SplashLoginActivity.date[i]);
+            row.put("textTitle",sqlReturn.LoginMood[i]);
+            row.put("textDescription",sqlReturn.LoginDate[i]);
             data.add(row);
             sqlReturn.model = 1;
         }
@@ -329,7 +397,7 @@ public class HomeFragment extends Fragment {
         }else if(buttonTest.getText().equals("雷雨")){
             searchMood = "心情5";
         }
-        String uid = LoginActivity.GetUserID;
+        String uid = sqlReturn.GetUserID;
         Map<String,String> map = new HashMap<>();
         map.put("command", "historyMood");
         map.put("uid", uid);
@@ -381,6 +449,7 @@ public class HomeFragment extends Fragment {
                 myAdapter = new MyAdapter();
                 mRecyclerView.setAdapter(myAdapter);
                 progressBarHome.setVisibility(View.INVISIBLE);
+                RefreshLayoutHome.setRefreshing(false);
             }else {
 //                new AlertDialog.Builder(activity)
 //                        .setTitle("日記載入失敗")
@@ -412,7 +481,7 @@ public class HomeFragment extends Fragment {
         if(searchBtn1.getText().equals("美食")){
             searchTag = "美食";
         }
-        String uid = LoginActivity.GetUserID;
+        String uid = sqlReturn.GetUserID;
         Map<String,String> map = new HashMap<>();
         map.put("command", "historyTag");
         map.put("uid", uid);
@@ -466,6 +535,7 @@ public class HomeFragment extends Fragment {
                 myAdapter = new MyAdapter();
                 mRecyclerView.setAdapter(myAdapter);
                 progressBarHome.setVisibility(View.INVISIBLE);
+                RefreshLayoutHome.setRefreshing(false);
             }else {
 //                new AlertDialog.Builder(activity)
 //                        .setTitle("日記載入失敗")

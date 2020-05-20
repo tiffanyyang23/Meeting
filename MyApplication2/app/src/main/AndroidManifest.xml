@@ -19,9 +19,6 @@
             android:name=".ui.friend.FriendListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".SplashLoginActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
             android:name=".Diary.DiaryEndActivity"
             android:screenOrientation="portrait" />
         <activity

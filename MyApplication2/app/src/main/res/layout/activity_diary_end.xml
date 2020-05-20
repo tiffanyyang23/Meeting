@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/btn_preview"
+            android:id="@+id/btn_DiaryEnd"
             style="@style/btn_skip"
             android:layout_width="408dp"
             android:layout_height="78dp"

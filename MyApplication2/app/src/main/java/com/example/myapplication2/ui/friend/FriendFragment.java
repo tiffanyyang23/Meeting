@@ -26,6 +26,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.myapplication2.Diary.DiaryActivity;
 import com.example.myapplication2.HttpURLConnection_AsyncTask;
@@ -55,7 +56,7 @@ public class FriendFragment extends Fragment {
     private LinkedList<HashMap<String,String>> data;
     private MyAdapter myAdapter;
     private ProgressBar progressBarFriend;
-
+    private SwipeRefreshLayout RefreshLayoutFriend;
 
     public static int FriendTag;
 
@@ -74,6 +75,14 @@ public class FriendFragment extends Fragment {
         mLayout.setVisibility(View.INVISIBLE);
 
         searchFriendList();
+
+        RefreshLayoutFriend = root.findViewById(R.id.RefreshLayoutFriend);
+        RefreshLayoutFriend.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                searchFriend();
+            }
+        });
 
         final ImageButton imBtnSearchFriend = root.findViewById(R.id.imBtnSearchFriend);
         imBtnSearchFriend.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +117,7 @@ public class FriendFragment extends Fragment {
     }
 
     private void doData(){
+
         data = new LinkedList<>();
         for(int i = 0; i < sqlReturn.SearchCountFriend; i++){
             HashMap<String,String> row = new HashMap<>();
@@ -168,7 +178,7 @@ public class FriendFragment extends Fragment {
 
     // 此為社群好友貼文全抓
     public void searchFriend(){
-        String uid = LoginActivity.GetUserID;
+        String uid = sqlReturn.GetUserID;
         Map<String,String> map = new HashMap<>();
         map.put("command", "friendList");
         map.put("uid", uid);
@@ -222,6 +232,7 @@ public class FriendFragment extends Fragment {
                 myAdapter = new MyAdapter();
                 mRecyclerView.setAdapter(myAdapter);
                 progressBarFriend.setVisibility(View.INVISIBLE);
+                RefreshLayoutFriend.setRefreshing(false);
             }else {
                 progressBarFriend.setVisibility(View.INVISIBLE);
 //                new AlertDialog.Builder(activity)
@@ -235,7 +246,7 @@ public class FriendFragment extends Fragment {
     }
 
     public void searchFriendList(){
-        String uid = LoginActivity.GetUserID;
+        String uid = sqlReturn.GetUserID;
         Map<String,String> map = new HashMap<>();
         map.put("command", "friendInfoList");
         map.put("uid", uid);

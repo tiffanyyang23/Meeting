@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.myapplication2.DiaryValue;
 import com.example.myapplication2.MainActivity;
 import com.example.myapplication2.R;
 
@@ -20,7 +21,6 @@ public class DiaryPreviewActivity extends AppCompatActivity{
 
     public static String total = "";
     public static String totalPlus = "";
-    private ImageButton imBtnBack;
     private String finalTotal;
 
 
@@ -73,9 +73,60 @@ public class DiaryPreviewActivity extends AppCompatActivity{
             }
         });
 
-        // total
 
-        totalPlus = ("  "+DiaryActivity.txtMood +DiaryTagActivity.txtTag+DiaryWhatActivity.txtFood+"，"+DiaryWhyActivity.txtWhy+"。\n");
+        // total
+        final Guidor guidor = new Guidor(getApplicationContext(),"diary.db",null,1);
+        String a = "";
+        if(DiaryValue.txtTag.equals("")){
+            if(DiaryValue.txtWhat.equals("")){
+                if(DiaryValue.txtWhy.equals("")){
+                    guidor.setMood(DiaryValue.txtMood);
+                    a = guidor.getDiary();
+                }else {
+                    guidor.setMood(DiaryValue.txtMood);
+                    guidor.setWhy(DiaryValue.txtWhy);
+                    a = guidor.getDiary();
+                }
+            }else{
+                if(DiaryValue.txtWhy.equals("")) {
+                    guidor.setMood(DiaryValue.txtMood);
+                    guidor.setWhat(DiaryValue.txtWhat);
+                    a = guidor.getDiary();
+                }else{
+                    guidor.setMood(DiaryValue.txtMood);
+                    guidor.setWhy(DiaryValue.txtWhy);
+                    guidor.setWhat(DiaryValue.txtWhat);
+                    a = guidor.getDiary();
+                }
+            }
+        }else{
+            if(DiaryValue.txtWhat.equals("")){
+                if(DiaryValue.txtWhy.equals("")){
+                    guidor.setMood(DiaryValue.txtMood);
+                    guidor.setTag(DiaryValue.txtTag);
+                    a = guidor.getDiary();
+                }else {
+                    guidor.setMood(DiaryValue.txtMood);
+                    guidor.setTag(DiaryValue.txtTag);
+                    guidor.setWhy(DiaryValue.txtWhy);
+                    a = guidor.getDiary();
+                }
+            }else{
+                if(DiaryValue.txtWhy.equals("")){
+                    guidor.setMood(DiaryValue.txtMood);
+                    guidor.setTag(DiaryValue.txtTag);
+                    guidor.setWhat(DiaryValue.txtWhat);
+                    a = guidor.getDiary();
+                }else {
+                    guidor.setMood(DiaryValue.txtMood);
+                    guidor.setTag(DiaryValue.txtTag);
+                    guidor.setWhy(DiaryValue.txtWhy);
+                    guidor.setWhat(DiaryValue.txtWhat);
+                    a = guidor.getDiary();
+                }
+            }
+        }
+        totalPlus = ("  "+ a+"\n");
         if(edit == null){
             finalTotal = total+ totalPlus;
             textView.setText(finalTotal);

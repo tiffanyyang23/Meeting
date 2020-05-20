@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -38,7 +39,7 @@ public class FriendListActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private LinkedList<HashMap<String,String>> data;
     private MyAdapter myAdapter;
-    public static int FriendTag;
+    private SwipeRefreshLayout RefreshLayoutFriendList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,14 @@ public class FriendListActivity extends AppCompatActivity {
         myAdapter = new MyAdapter();
         mRecyclerView.setAdapter(myAdapter);
         doData();
+        RefreshLayoutFriendList = findViewById(R.id.RefreshLayoutFriendList);
+        RefreshLayoutFriendList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                doData();
+                RefreshLayoutFriendList.setRefreshing(false);
+            }
+        });
 
     }
 

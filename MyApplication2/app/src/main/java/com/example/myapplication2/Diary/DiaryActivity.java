@@ -10,21 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.example.myapplication2.Guidor;
-import com.example.myapplication2.Login.LoginActivity;
-import com.example.myapplication2.Login.RegisterActivity;
+import com.example.myapplication2.DiaryValue;
 import com.example.myapplication2.MainActivity;
 import com.example.myapplication2.R;
 
 public class DiaryActivity extends AppCompatActivity {
 
-    public static String txtMood ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
-
-        //final Guidor guidor = new Guidor(getApplicationContext(),"diary.db",null,1);
 
 
         // 前往下一頁 sun -----------------------------------------------
@@ -32,9 +27,7 @@ public class DiaryActivity extends AppCompatActivity {
         btnsun.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //guidor.setMood("心情1");
-                txtMood ="今天心情超好";
-                //txtMood = guidor.getDiary();
+                DiaryValue.txtMood = "心情1";
                 Intent registerIntent = new Intent(DiaryActivity.this, DiaryTagActivity.class);
                 DiaryActivity.this.startActivity(registerIntent);
             }
@@ -45,7 +38,7 @@ public class DiaryActivity extends AppCompatActivity {
         btnsuncloud.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                txtMood ="今天心情還不錯";
+                DiaryValue.txtMood = "心情1";
                 Intent registerIntent = new Intent(DiaryActivity.this, DiaryTagActivity.class);
                 DiaryActivity.this.startActivity(registerIntent);
             }
@@ -56,7 +49,7 @@ public class DiaryActivity extends AppCompatActivity {
         btncloud.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                txtMood ="今天心情普通";
+                DiaryValue.txtMood = "心情1";
                 Intent registerIntent = new Intent(DiaryActivity.this, DiaryTagActivity.class);
                 DiaryActivity.this.startActivity(registerIntent);
             }
@@ -67,7 +60,7 @@ public class DiaryActivity extends AppCompatActivity {
         btnrain.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                txtMood ="今天心情稍差";
+                DiaryValue.txtMood = "心情1";
                 Intent registerIntent = new Intent(DiaryActivity.this, DiaryTagActivity.class);
                 DiaryActivity.this.startActivity(registerIntent);
             }
@@ -78,7 +71,7 @@ public class DiaryActivity extends AppCompatActivity {
         btnthunder.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                txtMood ="今天心情很不好";
+                DiaryValue.txtMood = "心情1";
                 Intent registerIntent = new Intent(DiaryActivity.this, DiaryTagActivity.class);
                 DiaryActivity.this.startActivity(registerIntent);
             }

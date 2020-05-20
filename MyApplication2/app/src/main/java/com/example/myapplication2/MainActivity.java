@@ -3,46 +3,20 @@ package com.example.myapplication2;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
 import com.example.myapplication2.Diary.DiaryActivity;
 import com.example.myapplication2.Login.LoginActivity;
-import com.example.myapplication2.ui.dashboard.DashboardFragment;
-import com.example.myapplication2.ui.friend.FriendFragment;
-import com.example.myapplication2.ui.home.HomeFragment;
-import com.example.myapplication2.ui.maybelike.MaybelikeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (login == false){
-            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-            startActivity(intent);
-        }
+//        if (login == false){
+//            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+//            startActivity(intent);
+//        }
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -115,7 +89,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    public void setupWindowAnimations(){
 
+
+
+    }
 
     // 擋住手機上回上一頁鍵
     public boolean onKeyDown(int keyCode, KeyEvent event) {

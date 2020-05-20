@@ -1,7 +1,6 @@
 package com.example.myapplication2.ui.home;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,16 +8,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.myapplication2.Login.LoginActivity;
 import com.example.myapplication2.MainActivity;
 import com.example.myapplication2.R;
-import com.example.myapplication2.SplashLoginActivity;
 import com.example.myapplication2.sqlReturn;
-
-import java.util.ArrayList;
 
 public class HomeContextActivity extends AppCompatActivity {
 
@@ -48,9 +42,9 @@ public class HomeContextActivity extends AppCompatActivity {
 
         int Getdata = getIntent().getIntExtra("data",0);
         if(Getdata == 1){
-            String total = "    "+SplashLoginActivity.content[HomeFragment.homeTag];
-            String mood = SplashLoginActivity.mood[HomeFragment.homeTag];
-            String date = SplashLoginActivity.date[HomeFragment.homeTag];
+            String total = "    "+sqlReturn.LoginContent[HomeFragment.homeTag];
+            String mood = sqlReturn.LoginMood[HomeFragment.homeTag];
+            String date = sqlReturn.LoginDate[HomeFragment.homeTag];
             txtHistoryDiary.setText(total);
             textTitle.setText(mood);
             textDescription.setText(date);

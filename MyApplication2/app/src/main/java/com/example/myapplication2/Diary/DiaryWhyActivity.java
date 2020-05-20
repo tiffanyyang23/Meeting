@@ -10,10 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.myapplication2.DiaryValue;
 import com.example.myapplication2.R;
 public class DiaryWhyActivity extends AppCompatActivity{
 
-    public static String txtWhy = "";
+    //public static String txtWhy = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class DiaryWhyActivity extends AppCompatActivity{
         btn_nowhy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtWhy = "因為不為甚麼";
+                DiaryValue.txtWhy = "沒為什麼";
                 Intent intent = new Intent();
                 intent.setClass(DiaryWhyActivity.this,DiaryPreviewActivity.class);
                 Bundle tagData = new Bundle();
@@ -51,7 +52,7 @@ public class DiaryWhyActivity extends AppCompatActivity{
         btn_hungry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtWhy = "因為我餓了";
+                DiaryValue.txtWhy = "餓了";
                 Intent intent = new Intent();
                 intent.setClass(DiaryWhyActivity.this,DiaryPreviewActivity.class);
                 Bundle tagData = new Bundle();
@@ -66,7 +67,7 @@ public class DiaryWhyActivity extends AppCompatActivity{
         btn_skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtWhy = "";
+                DiaryValue.txtWhy = "";
                 Intent intent = new Intent();
                 intent.setClass(DiaryWhyActivity.this,DiaryPreviewActivity.class);
                 Bundle tagData = new Bundle();
@@ -81,7 +82,7 @@ public class DiaryWhyActivity extends AppCompatActivity{
         mPreview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtWhy = "";
+                DiaryValue.txtWhy = "";
                 Intent intent = new Intent();
                 intent.setClass(DiaryWhyActivity.this,DiaryPreviewActivity.class);
                 Bundle tagData = new Bundle();

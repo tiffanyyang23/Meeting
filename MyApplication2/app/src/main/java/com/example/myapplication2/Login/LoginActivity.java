@@ -4,13 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,10 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication2.HttpURLConnection_AsyncTask;
 import com.example.myapplication2.MainActivity;
 import com.example.myapplication2.R;
-import com.example.myapplication2.SplashLoginActivity;
-import com.example.myapplication2.ui.home.HomeContextActivity;
-import com.example.myapplication2.ui.home.HomeFragment;
+import com.example.myapplication2.sqlReturn;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,8 +31,9 @@ public class LoginActivity extends AppCompatActivity {
     private static ProgressBar pr1;
     private String mail;
     private String pwd;
-    public static String GetUserID;
+    //public static String GetUserID;
     public static boolean a = false;
+    private Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +49,18 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
+
 
 
     }
-    public void login(View v){
+    public void login(){
         final EditText edUserEmail = findViewById(R.id.userEmail);
         final EditText edPasswd = findViewById(R.id.password);
         pr1 = findViewById(R.id.progressBar1);
@@ -75,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public class login extends HttpURLConnection_AsyncTask {
+    private class login extends HttpURLConnection_AsyncTask {
 
         // 建立弱連結
         WeakReference<Activity> activityReference;
@@ -92,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
 
             try {
                 jsonObject = new JSONObject(result);
-                GetUserID = jsonObject.getString("userID");
+                sqlReturn.GetUserID = jsonObject.getString("userID");
                 status = jsonObject.getBoolean("status");
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -100,13 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             if (status){
                 MainActivity.login = true;
                 a = true;
-                //Toast.makeText(activity, "登入成功", Toast.LENGTH_LONG).show();
-                // 對Context進行操作
-                Intent intent = new Intent(LoginActivity.this, SplashLoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                startActivity(intent);
-
+                history();
             }else {
                 new AlertDialog.Builder(activity)
                         .setTitle("登入失敗")
@@ -117,6 +118,70 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void history(){
+        while (LoginActivity.a){
+            String uid = sqlReturn.GetUserID;
+            Map<String,String> map = new HashMap<>();
+            map.put("command", "history");
+            map.put("uid", uid);
+            new history(this).execute((HashMap)map);
+            break;
+        }
+
+    }
+
+    private class history extends HttpURLConnection_AsyncTask {
+
+        // 建立弱連結
+        WeakReference<Activity> activityReference;
+        history(Activity context){
+            activityReference = new WeakReference<>(context);
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            JSONObject jsonObject = null;
+            JSONArray jsonArray = null;
+            boolean status = false;
+            // 取得弱連結的Context
+            Activity activity = activityReference.get();
+            if (activity == null || activity.isFinishing()) return;
+
+            try {
+                jsonObject = new JSONObject(result);
+
+                sqlReturn.LoginTextViewContext = jsonObject.getString("results");
+                sqlReturn.LoginCount = jsonObject.getInt("rowcount");
+                jsonArray = new JSONArray(sqlReturn.LoginTextViewContext);
+                sqlReturn.LoginContent = new String[sqlReturn.LoginCount];
+                sqlReturn.LoginTagName = new String[sqlReturn.LoginCount];
+                sqlReturn.LoginMood = new String[sqlReturn.LoginCount];
+                sqlReturn.LoginDate = new String[sqlReturn.LoginCount];
+                for(int i = 0; i<sqlReturn.LoginCount; i++){
+                    JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
+                    sqlReturn.LoginContent[i] = obj.getString("content");
+                    sqlReturn.LoginTagName[i] = obj.getString("tagName");
+                    sqlReturn.LoginMood[i] = obj.getString("mood");
+                    sqlReturn.LoginDate[i] = obj.getString("date");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (sqlReturn.LoginTextViewContext!=null){
+                //Toast.makeText(activity, "載入成功", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("id",1);
+                startActivity(intent);
+            }else {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("id",1);
+                startActivity(intent);
+            }
+        }
+
     }
 
 

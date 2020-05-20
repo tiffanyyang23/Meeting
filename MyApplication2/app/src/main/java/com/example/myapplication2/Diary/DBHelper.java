@@ -1,4 +1,4 @@
-package com.example.myapplication2;
+package com.example.myapplication2.Diary;
 
 import android.content.Context;
 import android.database.DatabaseErrorHandler;

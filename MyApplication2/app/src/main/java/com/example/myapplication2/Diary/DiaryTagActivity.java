@@ -10,11 +10,10 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication2.DiaryValue;
 import com.example.myapplication2.R;
 
 public class DiaryTagActivity extends AppCompatActivity {
-
-    public static String txtTag = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,7 @@ public class DiaryTagActivity extends AppCompatActivity {
         btn_food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtTag ="因為我今天吃了";
+                DiaryValue.txtTag ="美食";
                 Intent intent = new Intent(DiaryTagActivity.this, DiaryWhatActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryTagActivity.this.startActivity(intent);
@@ -90,9 +89,9 @@ public class DiaryTagActivity extends AppCompatActivity {
         btn_preview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DiaryTagActivity.txtTag ="";
-                DiaryWhatActivity.txtFood = "";
-                DiaryWhyActivity.txtWhy = "";
+                DiaryValue.txtTag ="";
+                DiaryValue.txtWhat = "";
+                DiaryValue.txtWhy = "";
                 Intent intent = new Intent();
                 intent.setClass(DiaryTagActivity.this,DiaryPreviewActivity.class);
                 Bundle tagData = new Bundle();

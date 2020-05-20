@@ -1,7 +1,9 @@
 package com.example.myapplication2.Diary;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,14 +15,30 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication2.DiaryValue;
+import com.example.myapplication2.HttpURLConnection_AsyncTask;
+import com.example.myapplication2.Login.LoginActivity;
+import com.example.myapplication2.MainActivity;
 import com.example.myapplication2.R;
+import com.example.myapplication2.sqlReturn;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
+import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class DiaryEndActivity extends AppCompatActivity {
 
@@ -28,6 +46,9 @@ public class DiaryEndActivity extends AppCompatActivity {
     String EditDiaryContext;
     private DisplayMetrics mPhone;
     private ImageView imageDiaryGetPhoto;
+    private String DiaryContext;
+    private Button btn_DiaryEnd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +59,7 @@ public class DiaryEndActivity extends AppCompatActivity {
 
         //接收日記
         editText3 = findViewById(R.id.editText3);
-        final String DiaryContext = getIntent().getStringExtra("total");
+        DiaryContext = getIntent().getStringExtra("total");
         editText3.setText(DiaryContext);
 
         //回到上一頁
@@ -79,6 +100,65 @@ public class DiaryEndActivity extends AppCompatActivity {
             }
         });
 
+        btn_DiaryEnd = findViewById(R.id.btn_DiaryEnd);
+        btn_DiaryEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DiaryInsert();
+            }
+        });
+
+    }
+
+    public void DiaryInsert(){
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        Map<String,String> map = new HashMap<>();
+        map.put("command", "newDiary");
+        map.put("uid", sqlReturn.GetUserID);
+        map.put("diaryContent",DiaryContext);
+        map.put("diaryTag","美食");
+        map.put("diaryDate",currentDate);
+        map.put("diaryMood", DiaryValue.txtMood);
+        new DiaryInsert(this).execute((HashMap)map);
+
+    }
+
+    private class DiaryInsert extends HttpURLConnection_AsyncTask {
+
+        // 建立弱連結
+        WeakReference<Activity> activityReference;
+        DiaryInsert(Activity context){
+            activityReference = new WeakReference<>(context);
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            JSONObject jsonObject = null;
+            boolean status = false;
+            // 取得弱連結的Context
+            Activity activity = activityReference.get();
+            if (activity == null || activity.isFinishing()) return;
+
+            try {
+                jsonObject = new JSONObject(result);
+                status = jsonObject.getBoolean("status");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (status){
+                Toast.makeText(activity, "日記新增成功", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(DiaryEndActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("id",1);
+                startActivity(intent);
+            }else {
+                new AlertDialog.Builder(activity)
+                        .setTitle("日記建立失敗")
+                        .setMessage("請確認網路是否連通!!")
+                        .setPositiveButton("OK", null)
+                        .show();
+            }
+
+        }
     }
 
     @Override

@@ -10,11 +10,12 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication2.DiaryValue;
 import com.example.myapplication2.R;
 
 public class DiaryWhatActivity extends AppCompatActivity{
 
-    public static String txtFood = "";
+    //public static String txtFood = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class DiaryWhatActivity extends AppCompatActivity{
         btnTaiwan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtFood = "台式料理";
+                DiaryValue.txtWhat = "台式料理";
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -49,7 +50,7 @@ public class DiaryWhatActivity extends AppCompatActivity{
         btnChina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtFood = "中式料理";
+                DiaryValue.txtWhat = "中式料理";
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -61,7 +62,7 @@ public class DiaryWhatActivity extends AppCompatActivity{
         btnFrance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtFood = "法式料理";
+                DiaryValue.txtWhat = "法式料理";
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -73,7 +74,7 @@ public class DiaryWhatActivity extends AppCompatActivity{
         btnItaly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtFood = "義式料理";
+                DiaryValue.txtWhat = "義式料理";
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -85,7 +86,7 @@ public class DiaryWhatActivity extends AppCompatActivity{
         btnKong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtFood = "港式料理";
+                DiaryValue.txtWhat = "港式料理";
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -97,7 +98,7 @@ public class DiaryWhatActivity extends AppCompatActivity{
         btnJapan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtFood = "日式料理";
+                DiaryValue.txtWhat = "日式料理";
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -109,7 +110,7 @@ public class DiaryWhatActivity extends AppCompatActivity{
         btnKorea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtFood = "韓式料理";
+                DiaryValue.txtWhat = "韓式料理";
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -121,7 +122,7 @@ public class DiaryWhatActivity extends AppCompatActivity{
         btnRandom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtFood = "無菜單料理";
+                DiaryValue.txtWhat = "無菜單料理";
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -133,7 +134,7 @@ public class DiaryWhatActivity extends AppCompatActivity{
         btnider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtFood = "創意料理";
+                DiaryValue.txtWhat = "創意料理";
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -145,8 +146,8 @@ public class DiaryWhatActivity extends AppCompatActivity{
         mPreview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DiaryWhatActivity.txtFood = "";
-                DiaryWhyActivity.txtWhy = "";
+                DiaryValue.txtWhat = "";
+                DiaryValue.txtWhy = "";
                 Intent intent = new Intent();
                 intent.setClass(DiaryWhatActivity.this,DiaryPreviewActivity.class);
                 Bundle tagData = new Bundle();
@@ -161,7 +162,7 @@ public class DiaryWhatActivity extends AppCompatActivity{
         btn_skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtFood = "";
+                DiaryValue.txtWhat = "";
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);

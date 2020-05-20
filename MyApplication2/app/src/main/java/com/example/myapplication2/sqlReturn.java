@@ -1,9 +1,18 @@
 package com.example.myapplication2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 public class sqlReturn{
     public static int model;
+    public static String GetUserID;
+    public static int GetCurrentCount;
+    // 此為login資料
+    public static String LoginTextViewContext = null;
+    public static int LoginCount;
+    public static String[] LoginContent;
+    public static String[] LoginMood;
+    public static String[] LoginTagName;
+    public static String[] LoginDate;
+
+
     // 此為歷史抓心情
     public static String textViewContext1 = null;
     public static int SearchCountMood;
