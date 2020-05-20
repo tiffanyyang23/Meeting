@@ -18,11 +18,12 @@
         app:layout_constraintVertical_bias="0.391">
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/txtHandWrite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
+            android:hint="請在此輸入內容"
             android:inputType="textMultiLine"
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -76,7 +77,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/handwriteButton"
+        android:id="@+id/handWriteButton"
         android:layout_width="296dp"
         android:layout_height="wrap_content"
         style="@style/btn_primary"
@@ -110,5 +111,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/btn_back_shape" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarHandWrite"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

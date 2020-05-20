@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.myapplication2.Diary.DiaryActivity;
+import com.example.myapplication2.DiaryValue;
 import com.example.myapplication2.HttpURLConnection_AsyncTask;
 import com.example.myapplication2.Login.LoginActivity;
 import com.example.myapplication2.MainActivity;
@@ -116,9 +117,9 @@ public class HomeFragment extends Fragment {
         RefreshLayoutHome.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if(buttonTest.equals("晴天")||buttonTest.equals("時晴")||buttonTest.equals("多雲")||buttonTest.equals("陣雨")||buttonTest.equals("雷雨")){
+                if(buttonTest.getText().equals("晴天")||buttonTest.getText().equals("時晴")||buttonTest.getText().equals("多雲")||buttonTest.getText().equals("陣雨")||buttonTest.getText().equals("雷雨")){
                     searchByMood();
-                }else if(buttonTest.equals("美食")){
+                }else if(buttonTest.getText().equals("美食")){
                     searchByTag();
                 }else{
                     history();
@@ -283,7 +284,19 @@ public class HomeFragment extends Fragment {
                     JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
                     sqlReturn.LoginContent[i] = obj.getString("content");
                     sqlReturn.LoginTagName[i] = obj.getString("tagName");
-                    sqlReturn.LoginMood[i] = obj.getString("mood");
+                    if(obj.getString("mood").equals("心情1")){
+                        sqlReturn.LoginMood[i] = "晴天";
+                    }else if(obj.getString("mood").equals("心情2")){
+                        sqlReturn.LoginMood[i] = "時晴";
+                    }else if(obj.getString("mood").equals("心情3")){
+                        sqlReturn.LoginMood[i] = "多雲";
+                    }else if(obj.getString("mood").equals("心情4")){
+                        sqlReturn.LoginMood[i] = "陣雨";
+                    }else if(obj.getString("mood").equals("心情5")){
+                        sqlReturn.LoginMood[i] = "雷雨";
+                    }else if(obj.getString("mood").equals("手寫日記心情")){
+                        sqlReturn.LoginMood[i] = "手寫日記";
+                    }
                     sqlReturn.LoginDate[i] = obj.getString("date");
                 }
 
@@ -300,7 +313,7 @@ public class HomeFragment extends Fragment {
         }
 
     }
-    private void doData(){
+    public void doData(){
         data = new LinkedList<>();
         for(int i = 0; i < sqlReturn.LoginCount; i++){
             HashMap<String,String> row = new HashMap<>();
@@ -362,12 +375,26 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
-            if(position==0){
+
+
+            if(position == 0){
                 holder.imageView.setImageResource(R.drawable.taiwan_icon);
-            }else if(position==1){
+            }else if(position == 1){
                 holder.imageView.setImageResource(R.drawable.ider_icon);
-            }else{
+            }else if(position == 2){
                 holder.imageView.setImageResource(R.drawable.china_icon);
+            }else if(position == 3){
+                holder.imageView.setImageResource(R.drawable.korea_icon);
+            }else if(position == 4){
+                holder.imageView.setImageResource(R.drawable.japan_icon);
+            }else if(position == 5){
+                holder.imageView.setImageResource(R.drawable.kong_icon);
+            }else if(position == 6){
+                holder.imageView.setImageResource(R.drawable.france_icon);
+            }else if(position == 7){
+                holder.imageView.setImageResource(R.drawable.italy_icon);
+            }else{
+                holder.imageView.setImageResource(R.drawable.random_icon);
             }
 
             holder.textTitle.setText(data.get(position).get("textTitle"));
@@ -434,7 +461,19 @@ public class HomeFragment extends Fragment {
                     JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
                     sqlReturn.content1[i] = obj.getString("content");
                     sqlReturn.tagName1[i] = obj.getString("tagName");
-                    sqlReturn.mood1[i] = obj.getString("mood");
+                    if(obj.getString("mood").equals("心情1")){
+                        sqlReturn.mood1[i] = "晴天";
+                    }else if(obj.getString("mood").equals("心情2")){
+                        sqlReturn.mood1[i] = "時晴";
+                    }else if(obj.getString("mood").equals("心情3")){
+                        sqlReturn.mood1[i] = "多雲";
+                    }else if(obj.getString("mood").equals("心情4")){
+                        sqlReturn.mood1[i] = "陣雨";
+                    }else if(obj.getString("mood").equals("心情5")){
+                        sqlReturn.mood1[i] = "雷雨";
+                    }else if(obj.getString("mood").equals("手寫日記心情")){
+                        sqlReturn.LoginMood[i] = "手寫日記";
+                    }
                     sqlReturn.date1[i] = obj.getString("date");
                 }
             } catch (JSONException e) {

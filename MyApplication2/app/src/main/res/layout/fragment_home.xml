@@ -175,7 +175,7 @@
                 android:layout_height="38dp"
                 android:enabled="false"
                 android:text="測試"
-                android:visibility="visible"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

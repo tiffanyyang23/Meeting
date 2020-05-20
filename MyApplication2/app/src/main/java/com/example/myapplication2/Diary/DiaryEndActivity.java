@@ -43,7 +43,7 @@ import java.util.Map;
 public class DiaryEndActivity extends AppCompatActivity {
 
     private TextView editText3;
-    String EditDiaryContext;
+    private String EditDiaryContext;
     private DisplayMetrics mPhone;
     private ImageView imageDiaryGetPhoto;
     private String DiaryContext;
@@ -104,7 +104,12 @@ public class DiaryEndActivity extends AppCompatActivity {
         btn_DiaryEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DiaryInsert();
+                if(editText3.getText().toString().equals(DiaryContext)){
+                    DiaryInsert();
+                }else{
+                    DiaryContext = editText3.getText().toString();
+                    DiaryInsert();
+                }
             }
         });
 
@@ -120,7 +125,6 @@ public class DiaryEndActivity extends AppCompatActivity {
         map.put("diaryDate",currentDate);
         map.put("diaryMood", DiaryValue.txtMood);
         new DiaryInsert(this).execute((HashMap)map);
-
     }
 
     private class DiaryInsert extends HttpURLConnection_AsyncTask {
@@ -147,13 +151,13 @@ public class DiaryEndActivity extends AppCompatActivity {
             if (status){
                 Toast.makeText(activity, "日記新增成功", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(DiaryEndActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("id",1);
                 startActivity(intent);
+                editText3.setText("");
             }else {
                 new AlertDialog.Builder(activity)
-                        .setTitle("日記建立失敗")
-                        .setMessage("請確認網路是否連通!!")
+                        .setTitle("伺服器擁擠中")
+                        .setMessage("請重複點選結束按鈕!!")
                         .setPositiveButton("OK", null)
                         .show();
             }

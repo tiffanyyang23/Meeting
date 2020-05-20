@@ -162,7 +162,19 @@ public class LoginActivity extends AppCompatActivity {
                     JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
                     sqlReturn.LoginContent[i] = obj.getString("content");
                     sqlReturn.LoginTagName[i] = obj.getString("tagName");
-                    sqlReturn.LoginMood[i] = obj.getString("mood");
+                    if(obj.getString("mood").equals("心情1")){
+                        sqlReturn.LoginMood[i] = "晴天";
+                    }else if(obj.getString("mood").equals("心情2")){
+                        sqlReturn.LoginMood[i] = "時晴";
+                    }else if(obj.getString("mood").equals("心情3")){
+                        sqlReturn.LoginMood[i] = "多雲";
+                    }else if(obj.getString("mood").equals("心情4")){
+                        sqlReturn.LoginMood[i] = "陣雨";
+                    }else if(obj.getString("mood").equals("心情5")){
+                        sqlReturn.LoginMood[i] = "雷雨";
+                    }else if(obj.getString("mood").equals("手寫日記心情")){
+                        sqlReturn.LoginMood[i] = "手寫日記";
+                    }
                     sqlReturn.LoginDate[i] = obj.getString("date");
                 }
             } catch (JSONException e) {

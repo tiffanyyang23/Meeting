@@ -1,7 +1,9 @@
 package com.example.myapplication2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,15 +17,33 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
+import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class HandwriteActivity extends AppCompatActivity {
 
     private DisplayMetrics mPhone;
     private ImageView imageGetPhoto;
+    private Button handWriteButton;
+    private TextView txtHandWrite;
+    private String handWriteContext;
+    private ProgressBar progressBarHandWrite;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +75,76 @@ public class HandwriteActivity extends AppCompatActivity {
             }
         });
 
+        progressBarHandWrite = findViewById(R.id.progressBarHandWrite);
+
+        txtHandWrite = findViewById(R.id.txtHandWrite);
+
+        handWriteButton = findViewById(R.id.handWriteButton);
+        handWriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBarHandWrite.setVisibility(View.VISIBLE);
+                handWriteContext = txtHandWrite.getText().toString();
+                if(handWriteContext.equals("")){
+                    progressBarHandWrite.setVisibility(View.INVISIBLE);
+                }else {
+                    DiaryInsert();
+                }
+            }
+        });
+
+    }
+
+    public void DiaryInsert(){
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        handWriteContext = txtHandWrite.getText().toString();
+        Map<String,String> map = new HashMap<>();
+        map.put("command", "newDiaryHandWrite");
+        map.put("uid", sqlReturn.GetUserID);
+        map.put("diaryContent",handWriteContext);
+        map.put("diaryTag","手寫日記");
+        map.put("diaryDate",currentDate);
+        map.put("diaryMood","手寫日記心情");
+        new DiaryInsert(this).execute((HashMap)map);
+    }
+
+    private class DiaryInsert extends HttpURLConnection_AsyncTask {
+
+        // 建立弱連結
+        WeakReference<Activity> activityReference;
+        DiaryInsert(Activity context){
+            activityReference = new WeakReference<>(context);
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            JSONObject jsonObject = null;
+            boolean status = false;
+            // 取得弱連結的Context
+            Activity activity = activityReference.get();
+            if (activity == null || activity.isFinishing()) return;
+
+            try {
+                jsonObject = new JSONObject(result);
+                status = jsonObject.getBoolean("status");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (status){
+                Toast.makeText(activity, "日記新增成功", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(HandwriteActivity.this, MainActivity.class);
+                intent.putExtra("id",1);
+                startActivity(intent);
+                txtHandWrite.setText("");
+                progressBarHandWrite.setVisibility(View.INVISIBLE);
+            }else {
+                new AlertDialog.Builder(activity)
+                        .setTitle("伺服器擁擠中")
+                        .setMessage("請重複點選結束按鈕!!")
+                        .setPositiveButton("OK", null)
+                        .show();
+            }
+
+        }
     }
 
     @Override

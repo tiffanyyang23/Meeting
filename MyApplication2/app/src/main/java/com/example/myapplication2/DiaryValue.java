@@ -6,4 +6,5 @@ public class DiaryValue {
     public static String txtTag;
     public static String txtWhat;
     public static String txtWhy;
+    public static int random = 0;
 }
