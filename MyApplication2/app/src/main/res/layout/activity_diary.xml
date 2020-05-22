@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFFFF"
+    android:background="#FFFFFF"
     tools:context=".Diary.DiaryActivity">
 
     <ImageButton
         android:id="@+id/imbtnReturnFrontPage"
         android:layout_width="65dp"
         android:layout_height="61dp"
+        android:backgroundTint="#FFFFFFFF"
         android:background="#FFFFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

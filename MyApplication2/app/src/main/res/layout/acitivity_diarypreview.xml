@@ -11,6 +11,7 @@
         android:id="@+id/imbtnReturn"
         android:layout_width="65dp"
         android:layout_height="61dp"
+        android:backgroundTint="#FFFFFFFF"
         android:background="#FFFFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

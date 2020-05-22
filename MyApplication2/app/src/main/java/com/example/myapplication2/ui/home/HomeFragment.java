@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -209,7 +210,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(searchBtn4.getText().equals("陣雨")){
-                    buttonTest.setText("多雲");
+                    buttonTest.setText("陣雨");
                     progressBarHome.setVisibility(View.VISIBLE);
                     searchByMood();
                     //doDataSearchMood();
@@ -219,10 +220,10 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-        searchBtn4.setOnClickListener(new View.OnClickListener() {
+        searchBtn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(searchBtn4.getText().equals("雷雨")){
+                if(searchBtn5.getText().equals("雷雨")){
                     buttonTest.setText("雷雨");
                     progressBarHome.setVisibility(View.VISIBLE);
                     searchByMood();
@@ -305,8 +306,12 @@ public class HomeFragment extends Fragment {
             }
             if (sqlReturn.LoginTextViewContext!=null){
                 doData();
+                mRecyclerView.setHasFixedSize(true);
+                mLayoutManager = new LinearLayoutManager(HomeFragment.super.getActivity());
+                mRecyclerView.setLayoutManager(mLayoutManager);
+                myAdapter = new MyAdapter();
+                mRecyclerView.setAdapter(myAdapter);
                 RefreshLayoutHome.setRefreshing(false);
-
             }else {
 
             }
@@ -449,33 +454,49 @@ public class HomeFragment extends Fragment {
 
             try {
                 jsonObject = new JSONObject(result);
-
-                sqlReturn.textViewContext1 = jsonObject.getString("results");
-                sqlReturn.SearchCountMood = jsonObject.getInt("rowcount");
-                jsonArray = new JSONArray(sqlReturn.textViewContext1);
-                sqlReturn.content1 = new String[sqlReturn.SearchCountMood];
-                sqlReturn.tagName1 = new String[sqlReturn.SearchCountMood];
-                sqlReturn.mood1 = new String[sqlReturn.SearchCountMood];
-                sqlReturn.date1 = new String[sqlReturn.SearchCountMood];
-                for(int i = 0; i<sqlReturn.SearchCountMood; i++){
-                    JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
-                    sqlReturn.content1[i] = obj.getString("content");
-                    sqlReturn.tagName1[i] = obj.getString("tagName");
-                    if(obj.getString("mood").equals("心情1")){
-                        sqlReturn.mood1[i] = "晴天";
-                    }else if(obj.getString("mood").equals("心情2")){
-                        sqlReturn.mood1[i] = "時晴";
-                    }else if(obj.getString("mood").equals("心情3")){
-                        sqlReturn.mood1[i] = "多雲";
-                    }else if(obj.getString("mood").equals("心情4")){
-                        sqlReturn.mood1[i] = "陣雨";
-                    }else if(obj.getString("mood").equals("心情5")){
-                        sqlReturn.mood1[i] = "雷雨";
-                    }else if(obj.getString("mood").equals("手寫日記心情")){
-                        sqlReturn.LoginMood[i] = "手寫日記";
+                status = jsonObject.getBoolean("status");
+                if(status){
+                    sqlReturn.textViewContext1 = jsonObject.getString("results");
+                    sqlReturn.SearchCountMood = jsonObject.getInt("rowcount");
+                    jsonArray = new JSONArray(sqlReturn.textViewContext1);
+                    sqlReturn.content1 = new String[sqlReturn.SearchCountMood];
+                    sqlReturn.tagName1 = new String[sqlReturn.SearchCountMood];
+                    sqlReturn.mood1 = new String[sqlReturn.SearchCountMood];
+                    sqlReturn.date1 = new String[sqlReturn.SearchCountMood];
+                    for(int i = 0; i<sqlReturn.SearchCountMood; i++){
+                        JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
+                        sqlReturn.content1[i] = obj.getString("content");
+                        sqlReturn.tagName1[i] = obj.getString("tagName");
+                        if(obj.getString("mood").equals("心情1")){
+                            sqlReturn.mood1[i] = "晴天";
+                        }else if(obj.getString("mood").equals("心情2")){
+                            sqlReturn.mood1[i] = "時晴";
+                        }else if(obj.getString("mood").equals("心情3")){
+                            sqlReturn.mood1[i] = "多雲";
+                        }else if(obj.getString("mood").equals("心情4")){
+                            sqlReturn.mood1[i] = "陣雨";
+                        }else if(obj.getString("mood").equals("心情5")){
+                            sqlReturn.mood1[i] = "雷雨";
+                        }else if(obj.getString("mood").equals("手寫日記心情")){
+                            sqlReturn.mood1[i] = "手寫日記";
+                        }
+                        sqlReturn.date1[i] = obj.getString("date");
                     }
-                    sqlReturn.date1[i] = obj.getString("date");
+                }else {
+                    sqlReturn.textViewContext1 = "";
+                    sqlReturn.SearchCountMood = 1;
+                    sqlReturn.content1 = new String[sqlReturn.SearchCountMood];
+                    sqlReturn.tagName1 = new String[sqlReturn.SearchCountMood];
+                    sqlReturn.mood1 = new String[sqlReturn.SearchCountMood];
+                    sqlReturn.date1 = new String[sqlReturn.SearchCountMood];
+                    for(int i = 0; i<sqlReturn.SearchCountMood; i++){
+                        sqlReturn.content1[i] = "";
+                        sqlReturn.tagName1[i] = "";
+                        sqlReturn.mood1[i] = "";
+                        sqlReturn.date1[i] = "";
+                    }
                 }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -490,11 +511,12 @@ public class HomeFragment extends Fragment {
                 progressBarHome.setVisibility(View.INVISIBLE);
                 RefreshLayoutHome.setRefreshing(false);
             }else {
-//                new AlertDialog.Builder(activity)
-//                        .setTitle("日記載入失敗")
-//                        .setMessage("請確認網路是否連通!!")
-//                        .setPositiveButton("OK", null)
-//                        .show();
+                progressBarHome.setVisibility(View.INVISIBLE);
+                new AlertDialog.Builder(activity)
+                        .setTitle("日記載入失敗")
+                        .setMessage("您沒有撰寫過心情為 ("+buttonTest.getText()+") 的日記")
+                        .setPositiveButton("OK", null)
+                        .show();
             }
         }
 

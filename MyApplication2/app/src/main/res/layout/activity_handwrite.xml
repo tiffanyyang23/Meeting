@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFFFF"
+    android:background="#33FDD300"
     tools:context=".HandwriteActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +53,8 @@
         android:id="@+id/imbtnReturnMain"
         android:layout_width="65dp"
         android:layout_height="61dp"
-        android:background="#FFFFFFFF"
+        android:backgroundTint="#33FDD300"
+        android:background="#33FDD300"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"

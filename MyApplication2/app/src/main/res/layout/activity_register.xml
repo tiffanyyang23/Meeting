@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFFFF"
+    android:background="#33FDD300"
     tools:context=".Login.RegisterActivity">
 
     <ProgressBar
@@ -109,7 +109,8 @@
         android:id="@+id/imbtnBackToLogin"
         android:layout_width="47dp"
         android:layout_height="42dp"
-        android:background="#FFFFFF"
+        android:backgroundTint="#33FDD300"
+        android:background="#33FDD300"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.218"
