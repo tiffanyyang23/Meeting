@@ -3,6 +3,7 @@ package com.example.myapplication2.Diary;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -22,6 +23,11 @@ public class DiaryPreviewActivity extends AppCompatActivity{
     public static String total = "";
     public static String totalPlus = "";
     private String finalTotal;
+    private TextView textView;
+    private static String a ="";
+    private static String b;
+    private Button btn_SaveEdit;
+    private ImageButton imBtnBack;
 
 
     @Override
@@ -31,7 +37,7 @@ public class DiaryPreviewActivity extends AppCompatActivity{
 
         Bundle tag = getIntent().getExtras();
         final String tag1 = tag.getString("1");
-        final TextView textView = findViewById(R.id.txtPreview);
+        textView = findViewById(R.id.txtPreview);
         final String edit = getIntent().getStringExtra("Edit");
 
         // 返回主題頁
@@ -54,7 +60,7 @@ public class DiaryPreviewActivity extends AppCompatActivity{
         });
 
         // 回上一頁
-        final ImageButton imBtnBack = findViewById(R.id.imbtnReturn);
+        imBtnBack = findViewById(R.id.imbtnReturn);
         imBtnBack.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 if (tag1.equals("DiaryTagActivity")){
@@ -62,10 +68,15 @@ public class DiaryPreviewActivity extends AppCompatActivity{
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     DiaryPreviewActivity.this.startActivity(intent);
                 }else if(tag1.equals("DiaryWhatActivity")){
+
                     Intent intent = new Intent(DiaryPreviewActivity.this,DiaryWhatActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     DiaryPreviewActivity.this.startActivity(intent);
                 }else if(tag1.equals("DiaryWhyActivity")) {
+                    Intent intent = new Intent(DiaryPreviewActivity.this, DiaryWhyActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    DiaryPreviewActivity.this.startActivity(intent);
+                }else if(tag1.equals("End")){
                     Intent intent = new Intent(DiaryPreviewActivity.this, DiaryWhyActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     DiaryPreviewActivity.this.startActivity(intent);
@@ -126,7 +137,7 @@ public class DiaryPreviewActivity extends AppCompatActivity{
                 }
             }
         }
-        totalPlus = ("  "+ a+"\n");
+        totalPlus = ("\t"+ a+"\n");
         if(edit == null){
             finalTotal = total+ totalPlus;
             textView.setText(finalTotal);
@@ -134,6 +145,7 @@ public class DiaryPreviewActivity extends AppCompatActivity{
             finalTotal = edit;
             textView.setText(finalTotal);
         }
+
 
 
         // 結束

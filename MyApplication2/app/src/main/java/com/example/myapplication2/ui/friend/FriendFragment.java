@@ -122,8 +122,8 @@ public class FriendFragment extends Fragment {
         for(int i = 0; i < sqlReturn.SearchCountFriend; i++){
             HashMap<String,String> row = new HashMap<>();
             row.put("place_text",sqlReturn.friendName[i]);
-            row.put("place_description_text",sqlReturn.date3[i]);
-            row.put("tag_text",sqlReturn.tagName3[i]);
+            row.put("place_description_text",sqlReturn.dateFriend[i]);
+            row.put("tag_text",sqlReturn.tagNameFriend[i]);
             data.add(row);
         }
     }
@@ -167,7 +167,12 @@ public class FriendFragment extends Fragment {
             holder.place_text.setText(data.get(position).get("place_text"));
             holder.place_description_text.setText(data.get(position).get("place_description_text"));
             holder.tag_text.setText(data.get(position).get("tag_text"));
-            holder.photo_image.setImageResource(R.drawable.images);
+            if(position % 2 == 0){
+                holder.photo_image.setImageResource(R.drawable.images);
+            }else {
+                holder.photo_image.setImageResource(R.drawable.image2);
+            }
+
         }
 
         @Override
@@ -203,26 +208,26 @@ public class FriendFragment extends Fragment {
             try {
                 jsonObject = new JSONObject(result);
 
-                sqlReturn.textViewContext3 = jsonObject.getString("results");
+                sqlReturn.textViewContextFriend = jsonObject.getString("results");
                 sqlReturn.SearchCountFriend = jsonObject.getInt("rowcount");
-                jsonArray = new JSONArray(sqlReturn.textViewContext3);
-                sqlReturn.content3 = new String[sqlReturn.SearchCountFriend];
-                sqlReturn.tagName3 = new String[sqlReturn.SearchCountFriend];
-                sqlReturn.mood3 = new String[sqlReturn.SearchCountFriend];
-                sqlReturn.date3 = new String[sqlReturn.SearchCountFriend];
+                jsonArray = new JSONArray(sqlReturn.textViewContextFriend);
+                sqlReturn.contentFriend = new String[sqlReturn.SearchCountFriend];
+                sqlReturn.tagNameFriend = new String[sqlReturn.SearchCountFriend];
+                sqlReturn.moodFriend = new String[sqlReturn.SearchCountFriend];
+                sqlReturn.dateFriend = new String[sqlReturn.SearchCountFriend];
                 sqlReturn.friendName = new String[sqlReturn.SearchCountFriend];
                 for(int i = 0; i<sqlReturn.SearchCountFriend; i++){
                     JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
-                    sqlReturn.content3[i] = obj.getString("content");
-                    sqlReturn.tagName3[i] = obj.getString("tagName");
-                    sqlReturn.mood3[i] = obj.getString("mood");
-                    sqlReturn.date3[i] = obj.getString("date");
+                    sqlReturn.contentFriend[i] = obj.getString("content");
+                    sqlReturn.tagNameFriend[i] = obj.getString("tagName");
+                    sqlReturn.moodFriend[i] = obj.getString("mood");
+                    sqlReturn.dateFriend[i] = obj.getString("date");
                     sqlReturn.friendName[i] = obj.getString("friendName01");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (sqlReturn.textViewContext3!=null){
+            if (sqlReturn.textViewContextFriend!=null){
                 //Toast.makeText(activity, String.valueOf(sqlReturn.SearchCountMood), Toast.LENGTH_LONG).show();
                 doData();
                 // 這裡是 adapter
@@ -272,9 +277,9 @@ public class FriendFragment extends Fragment {
             try {
                 jsonObject = new JSONObject(result);
 
-                sqlReturn.textViewContext4 = jsonObject.getString("results");
+                sqlReturn.textViewContextFriendList = jsonObject.getString("results");
                 sqlReturn.SearchCountFriendList = jsonObject.getInt("rowcount");
-                jsonArray = new JSONArray(sqlReturn.textViewContext4);
+                jsonArray = new JSONArray(sqlReturn.textViewContextFriendList);
                 sqlReturn.friendListName = new String[sqlReturn.SearchCountFriendList];
                 for(int i = 0; i<sqlReturn.SearchCountFriendList; i++){
                     JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
@@ -283,7 +288,7 @@ public class FriendFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (sqlReturn.textViewContext4!=null){
+            if (sqlReturn.textViewContextFriendList!=null){
                 //Toast.makeText(activity, String.valueOf(sqlReturn.SearchCountMood), Toast.LENGTH_LONG).show();
             }else {
 //                new AlertDialog.Builder(activity)

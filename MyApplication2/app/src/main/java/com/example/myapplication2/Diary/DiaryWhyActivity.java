@@ -26,6 +26,7 @@ public class DiaryWhyActivity extends AppCompatActivity{
         imbtnReturnFrontPage2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DiaryValue.WhatLock = true;
                 Intent intent = new Intent(DiaryWhyActivity.this, DiaryWhatActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhyActivity.this.startActivity(intent);
@@ -41,7 +42,7 @@ public class DiaryWhyActivity extends AppCompatActivity{
                 Intent intent = new Intent();
                 intent.setClass(DiaryWhyActivity.this,DiaryPreviewActivity.class);
                 Bundle tagData = new Bundle();
-                tagData.putString("1","DiaryWhyActivity");
+                tagData.putString("1","End");
                 intent.putExtras(tagData);
                 startActivity(intent);
             }
@@ -56,7 +57,7 @@ public class DiaryWhyActivity extends AppCompatActivity{
                 Intent intent = new Intent();
                 intent.setClass(DiaryWhyActivity.this,DiaryPreviewActivity.class);
                 Bundle tagData = new Bundle();
-                tagData.putString("1","DiaryWhyActivity");
+                tagData.putString("1","End");
                 intent.putExtras(tagData);
                 startActivity(intent);
             }

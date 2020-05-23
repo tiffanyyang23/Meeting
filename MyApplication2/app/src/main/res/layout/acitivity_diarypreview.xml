@@ -67,41 +67,57 @@
             android:textSize="24sp" />
 
         <Button
+            android:id="@+id/btn_SaveEdit"
+            style="@style/btn_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="儲存修改"
+            android:textColor="#7DD8D3"
+            android:textSize="24sp" />
+
+        <Button
             android:id="@+id/btn_end"
             style="@style/btn_skip"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="內容修改"
+            android:text="結束"
             android:textColor="#7DD8D3"
             android:textSize="24sp" />
     </LinearLayout>
 
     <ScrollView
-        android:layout_width="312dp"
-        android:layout_height="461dp"
+        android:layout_width="310dp"
+        android:layout_height="400dp"
         android:background="@drawable/textview_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.566">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:paddingLeft="3dp"
+            android:paddingRight="-5dp"
+            android:orientation="vertical">
 
-            <TextView
+            <EditText
                 android:id="@+id/txtPreview"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

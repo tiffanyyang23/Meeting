@@ -39,6 +39,10 @@ public class DiaryWhatActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 DiaryValue.txtWhat = "台式料理";
+                if(DiaryValue.WhatLock){
+                    DiaryValue.option = DiaryValue.txtWhat;
+                    DiaryValue.WhatLock = false;
+                }
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -51,6 +55,10 @@ public class DiaryWhatActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 DiaryValue.txtWhat = "中式料理";
+                if(DiaryValue.WhatLock){
+                    DiaryValue.option = DiaryValue.txtWhat;
+                    DiaryValue.WhatLock = false;
+                }
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -63,6 +71,10 @@ public class DiaryWhatActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 DiaryValue.txtWhat = "法式料理";
+                if(DiaryValue.WhatLock){
+                    DiaryValue.option = DiaryValue.txtWhat;
+                    DiaryValue.WhatLock = false;
+                }
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -75,6 +87,10 @@ public class DiaryWhatActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 DiaryValue.txtWhat = "義式料理";
+                if(DiaryValue.WhatLock){
+                    DiaryValue.option = DiaryValue.txtWhat;
+                    DiaryValue.WhatLock = false;
+                }
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -87,6 +103,10 @@ public class DiaryWhatActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 DiaryValue.txtWhat = "港式料理";
+                if(DiaryValue.WhatLock){
+                    DiaryValue.option = DiaryValue.txtWhat;
+                    DiaryValue.WhatLock = false;
+                }
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -99,6 +119,10 @@ public class DiaryWhatActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 DiaryValue.txtWhat = "日式料理";
+                if(DiaryValue.WhatLock){
+                    DiaryValue.option = DiaryValue.txtWhat;
+                    DiaryValue.WhatLock = false;
+                }
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -111,6 +135,10 @@ public class DiaryWhatActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 DiaryValue.txtWhat = "韓式料理";
+                if(DiaryValue.WhatLock){
+                    DiaryValue.option = DiaryValue.txtWhat;
+                    DiaryValue.WhatLock = false;
+                }
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -123,6 +151,10 @@ public class DiaryWhatActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 DiaryValue.txtWhat = "無菜單料理";
+                if(DiaryValue.WhatLock){
+                    DiaryValue.option = DiaryValue.txtWhat;
+                    DiaryValue.WhatLock = false;
+                }
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);
@@ -135,6 +167,10 @@ public class DiaryWhatActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 DiaryValue.txtWhat = "創意料理";
+                if(DiaryValue.WhatLock){
+                    DiaryValue.option = DiaryValue.txtWhat;
+                    DiaryValue.WhatLock = false;
+                }
                 Intent intent = new Intent(DiaryWhatActivity.this, DiaryWhyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 DiaryWhatActivity.this.startActivity(intent);

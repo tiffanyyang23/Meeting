@@ -11,7 +11,8 @@ public class sqlReturn{
     public static String[] LoginMood;
     public static String[] LoginTagName;
     public static String[] LoginDate;
-
+    public static String[] LoginOption;
+    public static String[] LoginDiaryID;
 
     // 此為歷史抓心情
     public static String textViewContext1 = null;
@@ -20,6 +21,8 @@ public class sqlReturn{
     public static String[] mood1;
     public static String[] tagName1;
     public static String[] date1;
+    public static String[] Option1;
+    public static String[] DiaryID1;
     // 此為歷史抓主題
     public static String textViewContext2 = null;
     public static int SearchCountTag;
@@ -27,16 +30,27 @@ public class sqlReturn{
     public static String[] mood2;
     public static String[] tagName2;
     public static String[] date2;
-    // 此為社群好友貼文全抓
+    public static String[] Option2;
+    public static String[] DiaryID2;
+    // 此為歷史抓手寫日記
     public static String textViewContext3 = null;
-    public static int SearchCountFriend;
+    public static int SearchCountHandWrite;
     public static String[] content3;
     public static String[] mood3;
     public static String[] tagName3;
     public static String[] date3;
+    public static String[] Option3;
+    public static String[] DiaryID3;
+    // 此為社群好友貼文全抓
+    public static String textViewContextFriend = null;
+    public static int SearchCountFriend;
+    public static String[] contentFriend;
+    public static String[] moodFriend;
+    public static String[] tagNameFriend;
+    public static String[] dateFriend;
     public static String[] friendName;
     // 此為抓好友
-    public static String textViewContext4 = null;
+    public static String textViewContextFriendList = null;
     public static int SearchCountFriendList;
     public static String[] friendListName;
 

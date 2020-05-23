@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item1"
     android:layout_width="match_parent"
-    android:layout_height="330dp"
+    android:layout_height="340dp"
     android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,9 +13,11 @@
 
                 <ImageView
                     android:id="@+id/photo_image"
-                    android:layout_width="411dp"
-                    android:layout_height="296dp"
+                    android:layout_width="410dp"
+                    android:layout_height="301dp"
+                    android:layout_marginEnd="1dp"
                     android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

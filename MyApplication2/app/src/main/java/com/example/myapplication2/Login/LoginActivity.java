@@ -158,6 +158,8 @@ public class LoginActivity extends AppCompatActivity {
                 sqlReturn.LoginTagName = new String[sqlReturn.LoginCount];
                 sqlReturn.LoginMood = new String[sqlReturn.LoginCount];
                 sqlReturn.LoginDate = new String[sqlReturn.LoginCount];
+                sqlReturn.LoginOption = new String[sqlReturn.LoginCount];
+                sqlReturn.LoginDiaryID = new String[sqlReturn.LoginCount];
                 for(int i = 0; i<sqlReturn.LoginCount; i++){
                     JSONObject obj = new JSONObject(String.valueOf(jsonArray.get(i)));
                     sqlReturn.LoginContent[i] = obj.getString("content");
@@ -176,6 +178,8 @@ public class LoginActivity extends AppCompatActivity {
                         sqlReturn.LoginMood[i] = "手寫日記";
                     }
                     sqlReturn.LoginDate[i] = obj.getString("date");
+                    sqlReturn.LoginOption[i] = obj.getString("optionNo");
+                    sqlReturn.LoginDiaryID[i] = obj.getString("diaryNo");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

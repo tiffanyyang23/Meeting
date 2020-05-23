@@ -4,37 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#33FDD300"
+    android:background="#FFFFFFFF"
     tools:context=".ui.friend.FriendListActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout5"
-        android:layout_width="0dp"
-        android:layout_height="593dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/RefreshLayoutFriendList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/RecyclerView_2"
-                android:layout_width="0dp"
-                android:layout_height="617dp">
-
-            </androidx.recyclerview.widget.RecyclerView>
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
@@ -44,6 +18,36 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_border"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.26"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.88">
+
+
+            <EditText
+                android:id="@+id/textView3"
+                android:layout_width="224dp"
+                android:layout_height="wrap_content"
+                android:hint="請輸入姓名"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:paddingLeft="10dp"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/imBtnSearch"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_search_black_24dp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/title_Friend"
@@ -65,8 +69,7 @@
             android:id="@+id/imbtnReturnToSocial"
             android:layout_width="65dp"
             android:layout_height="61dp"
-            android:background="#33FDD300"
-            android:backgroundTint="#33FDD300"
+            android:background="#FFFFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.046"
@@ -78,34 +81,60 @@
         <Button
             android:id="@+id/button"
             style="@style/btn_primary"
-            android:layout_width="114dp"
-            android:layout_height="48dp"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
             android:backgroundTint="#10FAC1"
-            android:text="新增好友"
+            android:text="摯友"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.946"
+            app:layout_constraintHorizontal_bias="0.953"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.855" />
+            app:layout_constraintVertical_bias="0.9" />
 
-        <Button
-            android:id="@+id/button2"
-            style="@style/btn_primary"
-            android:layout_width="114dp"
-            android:layout_height="48dp"
-            android:backgroundTint="#B3FA10"
-            android:text="搜尋好友"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="65dp"
+            android:layout_height="61dp"
+            android:background="#FFFFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.053"
+            app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.855" />
+            app:layout_constraintVertical_bias="0.207"
+            app:srcCompat="@drawable/ic_add_black" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout5"
+        android:layout_width="wrap_content"
+        android:layout_height="574dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/RefreshLayoutFriendList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerView_2"
+                android:layout_width="0dp"
+                android:layout_height="617dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

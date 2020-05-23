@@ -105,6 +105,7 @@ public class HandwriteActivity extends AppCompatActivity {
         map.put("diaryTag","手寫日記");
         map.put("diaryDate",currentDate);
         map.put("diaryMood","手寫日記心情");
+        map.put("diaryOptionClass","手寫日記選項");
         new DiaryInsert(this).execute((HashMap)map);
     }
 
@@ -142,6 +143,7 @@ public class HandwriteActivity extends AppCompatActivity {
                         .setMessage("請重複點選結束按鈕!!")
                         .setPositiveButton("OK", null)
                         .show();
+                progressBarHandWrite.setVisibility(View.INVISIBLE);
             }
 
         }
