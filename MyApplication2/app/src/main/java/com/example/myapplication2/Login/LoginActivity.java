@@ -1,6 +1,7 @@
 package com.example.myapplication2.Login;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,7 +46,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent registerIntent = new Intent(LoginActivity.this,RegisterActivity.class);
-                LoginActivity.this.startActivity(registerIntent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this);
+                LoginActivity.this.startActivity(registerIntent,options.toBundle());
             }
         });
 
@@ -187,14 +189,14 @@ public class LoginActivity extends AppCompatActivity {
             if (sqlReturn.LoginTextViewContext!=null){
                 //Toast.makeText(activity, "載入成功", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this);
                 intent.putExtra("id",1);
-                startActivity(intent);
+                startActivity(intent,options.toBundle());
             }else {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("id",1);
-                startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this);
+                startActivity(intent,options.toBundle());
             }
         }
 

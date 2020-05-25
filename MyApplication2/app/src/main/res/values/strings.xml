@@ -7,7 +7,7 @@
     <string name="title_dashboard">統計圖表</string>
     <string name="title_notifications">日記</string>
     <string name="title_friend">社群</string>
-    <string name="title_maybelike">可能喜歡</string>
+    <string name="title_maybelike">推薦</string>
     <string name="title_activity_login">登入</string>
     <string name="prompt_email">帳號</string>
     <string name="prompt_password">密碼</string>

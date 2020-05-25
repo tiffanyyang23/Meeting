@@ -22,86 +22,10 @@ import com.example.myapplication2.R;
 
 public class MaybelikeFragment extends Fragment {
 
-    private ConstraintLayout mLayout;
-    private Button mBtnChange;
-    private Button mGoToHandWrite;
-    private Button mGoToDiary;
-    private Button mGoToOCR;
-    private boolean changeBtn = false;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_maybelike, container, false);
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mGoToHandWrite = mainActivity.findViewById(R.id.goToHandwritebutton);
-        mGoToDiary = mainActivity.findViewById(R.id.goToDiarybutton);
-        mGoToOCR = mainActivity.findViewById(R.id.goToOCRbutton);
-        mLayout = mainActivity.findViewById(R.id.testConstraint);
-        mLayout.setBackgroundColor(0xFFFFFFFF);
-        mLayout.setVisibility(View.INVISIBLE);
-
-        if(mGoToHandWrite.isEnabled()){
-            mGoToHandWrite.setEnabled(false);
-            mGoToHandWrite.setVisibility(View.INVISIBLE);
-        }
-        if(mGoToDiary.isEnabled()){
-            mGoToDiary.setEnabled(false);
-            mGoToDiary.setVisibility(View.INVISIBLE);
-        }
-        if(mGoToOCR.isEnabled()){
-            mGoToOCR.setEnabled(false);
-            mGoToOCR.setVisibility(View.INVISIBLE);
-        }
-
-        mBtnChange = root.findViewById(R.id.btnChange4);
-        mBtnChange.setOnClickListener(btnChangeColorOnClick);
         return root;
     }
-
-    private View.OnClickListener btnChangeColorOnClick = new View.OnClickListener() {
-        public void onClick(View v) {
-            int iBackColorRedVal, iBackColorRedEnd;
-            if(!changeBtn){
-                mLayout.setVisibility(View.VISIBLE);
-                mGoToHandWrite.setEnabled(true);
-                mGoToHandWrite.setVisibility(View.VISIBLE);
-                mGoToDiary.setEnabled(true);
-                mGoToDiary.setVisibility(View.VISIBLE);
-                mGoToOCR.setEnabled(true);
-                mGoToOCR.setVisibility(View.VISIBLE);
-                changeBtn = true;
-            }else if(changeBtn == true){
-                mGoToHandWrite.setEnabled(false);
-                mGoToHandWrite.setVisibility(View.INVISIBLE);
-                mGoToDiary.setEnabled(false);
-                mGoToDiary.setVisibility(View.INVISIBLE);
-                mGoToOCR.setEnabled(false);
-                mGoToOCR.setVisibility(View.INVISIBLE);
-                changeBtn = false;
-            }
-            final int iBackColor =
-                    ((ColorDrawable)(mLayout.getBackground())).getColor();
-            iBackColorRedVal = (iBackColor & 0xFF);
-
-            if (iBackColorRedVal > 127)
-                iBackColorRedEnd = 0;
-            else
-                iBackColorRedEnd = 255;
-            ValueAnimator animScreenBackColor =
-                    ValueAnimator.ofInt(iBackColorRedVal, iBackColorRedEnd);
-            animScreenBackColor.setDuration(500);
-            animScreenBackColor.setInterpolator(new LinearInterpolator());
-            animScreenBackColor.start();
-            animScreenBackColor.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    int val = (Integer)animation.getAnimatedValue();
-
-                    mLayout.setBackgroundColor(
-                            iBackColor & 0x33000000 | val << 16 | val << 8 | val );
-                }
-            });
-        }
-    };
 }

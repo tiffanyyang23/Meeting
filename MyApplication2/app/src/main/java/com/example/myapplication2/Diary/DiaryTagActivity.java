@@ -1,5 +1,6 @@
 package com.example.myapplication2.Diary;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,8 +26,8 @@ public class DiaryTagActivity extends AppCompatActivity {
         imbtnReturnToDiary.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 Intent intent = new Intent(DiaryTagActivity.this, DiaryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                DiaryTagActivity.this.startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryTagActivity.this);
+                DiaryTagActivity.this.startActivity(intent,options.toBundle());
             }
         });
 //        // 前往下一頁 clothes
@@ -47,8 +48,8 @@ public class DiaryTagActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DiaryValue.txtTag ="美食";
                 Intent intent = new Intent(DiaryTagActivity.this, DiaryWhatActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                DiaryTagActivity.this.startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryTagActivity.this);
+                DiaryTagActivity.this.startActivity(intent,options.toBundle());
             }
         });
 //        // 前往下一頁 travel
@@ -97,7 +98,8 @@ public class DiaryTagActivity extends AppCompatActivity {
                 Bundle tagData = new Bundle();
                 tagData.putString("1","DiaryTagActivity");
                 intent.putExtras(tagData);
-                startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryTagActivity.this);
+                startActivity(intent,options.toBundle());
             }
         });
     }

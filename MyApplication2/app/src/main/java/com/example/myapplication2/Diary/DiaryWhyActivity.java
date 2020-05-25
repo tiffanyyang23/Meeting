@@ -2,6 +2,7 @@ package com.example.myapplication2.Diary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,8 +29,8 @@ public class DiaryWhyActivity extends AppCompatActivity{
             public void onClick(View v) {
                 DiaryValue.WhatLock = true;
                 Intent intent = new Intent(DiaryWhyActivity.this, DiaryWhatActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                DiaryWhyActivity.this.startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryWhyActivity.this);
+                DiaryWhyActivity.this.startActivity(intent,options.toBundle());
             }
         });
 
@@ -44,7 +45,8 @@ public class DiaryWhyActivity extends AppCompatActivity{
                 Bundle tagData = new Bundle();
                 tagData.putString("1","End");
                 intent.putExtras(tagData);
-                startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryWhyActivity.this);
+                startActivity(intent,options.toBundle());
             }
         });
 
@@ -59,7 +61,8 @@ public class DiaryWhyActivity extends AppCompatActivity{
                 Bundle tagData = new Bundle();
                 tagData.putString("1","End");
                 intent.putExtras(tagData);
-                startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryWhyActivity.this);
+                startActivity(intent,options.toBundle());
             }
         });
 
@@ -74,7 +77,8 @@ public class DiaryWhyActivity extends AppCompatActivity{
                 Bundle tagData = new Bundle();
                 tagData.putString("1","DiaryWhyActivity");
                 intent.putExtras(tagData);
-                startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryWhyActivity.this);
+                startActivity(intent,options.toBundle());
             }
         });
 
@@ -89,7 +93,8 @@ public class DiaryWhyActivity extends AppCompatActivity{
                 Bundle tagData = new Bundle();
                 tagData.putString("1","DiaryWhyActivity");
                 intent.putExtras(tagData);
-                startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryWhyActivity.this);
+                startActivity(intent,options.toBundle());
             }
         });
     }

@@ -24,14 +24,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="結束前預覽"
+        android:text="完成"
         android:textColor="#7dd8d3"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintVertical_bias="0.152" />
 
     <TextView
         android:id="@+id/textView2"
@@ -50,49 +51,78 @@
         android:id="@+id/linearLayout"
         android:layout_width="418dp"
         android:layout_height="82dp"
-        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+
         <Button
-            android:id="@+id/btn_DiaryEnd"
-            style="@style/btn_skip"
-            android:layout_width="408dp"
-            android:layout_height="78dp"
-            android:text="結束"
-            android:textColor="#7DD8D3"
-            android:textSize="24sp"
+            android:id="@+id/btn_friend"
+            style="@style/btn_diarybtn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="好友"
+            android:backgroundTint="#7dd8d3"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_bestFriend"
+            style="@style/btn_diarybtn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="摯友"
+            android:backgroundTint="#7dd8d3"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.326"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_DiaryEnd"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#7dd8d3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:srcCompat="@drawable/ic_send_black_24dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
         android:layout_width="310dp"
-        android:layout_height="385dp"
-        android:background="@drawable/textview_border"
-        android:orientation="vertical"
+        android:layout_height="354dp"
+        android:background="@drawable/dotted_border"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42">
+        app:layout_constraintVertical_bias="0.46">
 
         <TextView
             android:id="@+id/editText3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/happy_monkey"
             android:gravity="start|top"
+            android:hint="完成內容"
+            android:paddingLeft="12dp"
+            android:paddingTop="15dp"
             android:textSize="30sp"
-            android:paddingLeft="10dp"
-            android:paddingRight="-1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

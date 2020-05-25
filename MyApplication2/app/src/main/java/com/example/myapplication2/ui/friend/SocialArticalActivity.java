@@ -38,11 +38,11 @@ public class SocialArticalActivity extends AppCompatActivity {
         SocialUserName = findViewById(R.id.SocialUserName);
         SocialUserName.setText(sqlReturn.friendName[FriendFragment.FriendTag]);
         SocialDiaryDateTime = findViewById(R.id.SocialDiaryDateTime);
-        SocialDiaryDateTime.setText(sqlReturn.date3[FriendFragment.FriendTag]);
+        SocialDiaryDateTime.setText(sqlReturn.dateFriend[FriendFragment.FriendTag]);
         SocialDiaryTitle = findViewById(R.id.SocialDiaryTitle);
-        SocialDiaryTitle.setText(sqlReturn.tagName3[FriendFragment.FriendTag]);
+        SocialDiaryTitle.setText(sqlReturn.tagNameFriend[FriendFragment.FriendTag]);
         txtSocialContext = findViewById(R.id.txtSocialContext);
-        txtSocialContext.setText(sqlReturn.content3[FriendFragment.FriendTag]);
+        txtSocialContext.setText(sqlReturn.contentFriend[FriendFragment.FriendTag]);
 
     }
     // 擋住手機上回上一頁鍵

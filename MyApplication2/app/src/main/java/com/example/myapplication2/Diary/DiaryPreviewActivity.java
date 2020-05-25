@@ -2,6 +2,7 @@ package com.example.myapplication2.Diary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -54,8 +55,8 @@ public class DiaryPreviewActivity extends AppCompatActivity{
                     }
                 }
                 Intent intent = new Intent(DiaryPreviewActivity.this, DiaryTagActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryPreviewActivity.this);
+                startActivity(intent,options.toBundle());
             }
         });
 
@@ -65,21 +66,21 @@ public class DiaryPreviewActivity extends AppCompatActivity{
             public void onClick(View v) {
                 if (tag1.equals("DiaryTagActivity")){
                     Intent intent = new Intent(DiaryPreviewActivity.this,DiaryTagActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    DiaryPreviewActivity.this.startActivity(intent);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryPreviewActivity.this);
+                    DiaryPreviewActivity.this.startActivity(intent,options.toBundle());
                 }else if(tag1.equals("DiaryWhatActivity")){
 
                     Intent intent = new Intent(DiaryPreviewActivity.this,DiaryWhatActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    DiaryPreviewActivity.this.startActivity(intent);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryPreviewActivity.this);
+                    DiaryPreviewActivity.this.startActivity(intent,options.toBundle());
                 }else if(tag1.equals("DiaryWhyActivity")) {
                     Intent intent = new Intent(DiaryPreviewActivity.this, DiaryWhyActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    DiaryPreviewActivity.this.startActivity(intent);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryPreviewActivity.this);
+                    DiaryPreviewActivity.this.startActivity(intent,options.toBundle());
                 }else if(tag1.equals("End")){
                     Intent intent = new Intent(DiaryPreviewActivity.this, DiaryWhyActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    DiaryPreviewActivity.this.startActivity(intent);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryPreviewActivity.this);
+                    DiaryPreviewActivity.this.startActivity(intent,options.toBundle());
                 }
             }
         });
@@ -137,7 +138,7 @@ public class DiaryPreviewActivity extends AppCompatActivity{
                 }
             }
         }
-        totalPlus = ("\t"+ a+"\n");
+        totalPlus = ("    "+ a+"\n");
         if(edit == null){
             finalTotal = total+ totalPlus;
             textView.setText(finalTotal);
@@ -155,9 +156,10 @@ public class DiaryPreviewActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(DiaryPreviewActivity.this, DiaryEndActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("total",finalTotal);
+                intent.putExtra("total",textView.getText().toString());
                 intent.putExtra("1",tag1);
-                startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryPreviewActivity.this);
+                startActivity(intent,options.toBundle());
 
             }
         });

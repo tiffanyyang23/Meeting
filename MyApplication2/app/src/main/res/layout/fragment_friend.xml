@@ -64,8 +64,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/RecyclerView_1"
                     android:layout_width="0dp"
@@ -78,16 +80,6 @@
                 </androidx.recyclerview.widget.RecyclerView>
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btnChange3"
-        style="@style/btn_primary"
-        android:layout_width="82dp"
-        android:layout_height="83dp"
-        android:background="@drawable/ic_add_circle_black_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBarFriend"

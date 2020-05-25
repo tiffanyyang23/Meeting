@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -47,7 +48,7 @@ public class DiaryEndActivity extends AppCompatActivity {
     private DisplayMetrics mPhone;
     private ImageView imageDiaryGetPhoto;
     private String DiaryContext;
-    private Button btn_DiaryEnd;
+    private ImageButton btn_DiaryEnd;
 
 
     @Override
@@ -74,12 +75,12 @@ public class DiaryEndActivity extends AppCompatActivity {
                 }
                 Intent intent = new Intent();
                 intent.setClass(DiaryEndActivity.this,DiaryPreviewActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Bundle tagData = new Bundle();
                 tagData.putString("1",LastView);
                 intent.putExtras(tagData);
                 intent.putExtra("Edit", EditDiaryContext);
-                startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryEndActivity.this);
+                startActivity(intent,options.toBundle());
             }
         });
 
@@ -153,8 +154,10 @@ public class DiaryEndActivity extends AppCompatActivity {
                 Toast.makeText(activity, "日記新增成功", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(DiaryEndActivity.this, MainActivity.class);
                 intent.putExtra("id",1);
-                startActivity(intent);
-                editText3.setText("");
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryEndActivity.this);
+                startActivity(intent,options.toBundle());
+                DiaryPreviewActivity.total = "";
+                DiaryPreviewActivity.totalPlus = "";
             }else {
                 new AlertDialog.Builder(activity)
                         .setTitle("伺服器擁擠中")

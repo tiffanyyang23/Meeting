@@ -9,22 +9,26 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="317dp"
-        android:layout_height="315dp"
+        android:layout_width="310dp"
+        android:layout_height="345dp"
+        android:background="@drawable/dotted_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391">
+        app:layout_constraintVertical_bias="0.42000002">
 
         <EditText
             android:id="@+id/txtHandWrite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/happy_monkey"
             android:gravity="start|top"
             android:hint="請在此輸入內容"
             android:inputType="textMultiLine"
+            android:paddingLeft="12dp"
+            android:paddingTop="15dp"
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.857"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.781"
+        app:layout_constraintVertical_bias="0.809"
         app:srcCompat="@mipmap/ic_addphoto_foreground" />
 
     <ImageButton
@@ -79,28 +83,28 @@
 
     <Button
         android:id="@+id/handWriteButton"
+        style="@style/btn_primary"
         android:layout_width="296dp"
         android:layout_height="wrap_content"
-        style="@style/btn_primary"
-        android:textColor="#FFFFFF"
         android:text="完成"
+        android:textColor="#FFFFFF"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.884" />
+        app:layout_constraintVertical_bias="0.91" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="232dp"
-        android:layout_height="112dp"
+        android:layout_width="176dp"
+        android:layout_height="96dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintHorizontal_bias="0.42"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.79">
+        app:layout_constraintVertical_bias="0.81">
 
         <ImageView
             android:id="@+id/imageGetPhoto"

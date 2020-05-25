@@ -4,11 +4,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -53,8 +55,8 @@ public class HandwriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HandwriteActivity.this,MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("id",1);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
@@ -78,7 +80,6 @@ public class HandwriteActivity extends AppCompatActivity {
         progressBarHandWrite = findViewById(R.id.progressBarHandWrite);
 
         txtHandWrite = findViewById(R.id.txtHandWrite);
-
         handWriteButton = findViewById(R.id.handWriteButton);
         handWriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +135,8 @@ public class HandwriteActivity extends AppCompatActivity {
                 Toast.makeText(activity, "日記新增成功", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(HandwriteActivity.this, MainActivity.class);
                 intent.putExtra("id",1);
-                startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(HandwriteActivity.this);
+                startActivity(intent,options.toBundle());
                 txtHandWrite.setText("");
                 progressBarHandWrite.setVisibility(View.INVISIBLE);
             }else {

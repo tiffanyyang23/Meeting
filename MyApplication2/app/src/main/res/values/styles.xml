@@ -8,6 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/explode_anim</item>
+        <item name="android:windowExitTransition">@transition/explode_anim</item>
     </style>
 
     <style name="btn_diarybtn" parent="@android:style/Widget.Button">

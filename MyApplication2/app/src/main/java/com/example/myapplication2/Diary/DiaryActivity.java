@@ -2,6 +2,7 @@ package com.example.myapplication2.Diary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,7 +30,8 @@ public class DiaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DiaryValue.txtMood = "心情1";
                 Intent registerIntent = new Intent(DiaryActivity.this, DiaryTagActivity.class);
-                DiaryActivity.this.startActivity(registerIntent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryActivity.this);
+                DiaryActivity.this.startActivity(registerIntent,options.toBundle());
             }
         });
 
@@ -40,7 +42,8 @@ public class DiaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DiaryValue.txtMood = "心情1";
                 Intent registerIntent = new Intent(DiaryActivity.this, DiaryTagActivity.class);
-                DiaryActivity.this.startActivity(registerIntent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryActivity.this);
+                DiaryActivity.this.startActivity(registerIntent,options.toBundle());
             }
         });
 
@@ -51,7 +54,8 @@ public class DiaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DiaryValue.txtMood = "心情1";
                 Intent registerIntent = new Intent(DiaryActivity.this, DiaryTagActivity.class);
-                DiaryActivity.this.startActivity(registerIntent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryActivity.this);
+                DiaryActivity.this.startActivity(registerIntent,options.toBundle());
             }
         });
 
@@ -62,7 +66,8 @@ public class DiaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DiaryValue.txtMood = "心情1";
                 Intent registerIntent = new Intent(DiaryActivity.this, DiaryTagActivity.class);
-                DiaryActivity.this.startActivity(registerIntent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryActivity.this);
+                DiaryActivity.this.startActivity(registerIntent,options.toBundle());
             }
         });
 
@@ -73,7 +78,8 @@ public class DiaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DiaryValue.txtMood = "心情1";
                 Intent registerIntent = new Intent(DiaryActivity.this, DiaryTagActivity.class);
-                DiaryActivity.this.startActivity(registerIntent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryActivity.this);
+                DiaryActivity.this.startActivity(registerIntent,options.toBundle());
             }
         });
 

@@ -47,12 +47,6 @@ import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
-    private ConstraintLayout mLayout;
-    private Button mBtnChange;
-    private Button mGoToHandWrite;
-    private Button mGoToDiary;
-    private Button mGoToOCR;
-    private boolean changeBtn = false;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private LinkedList<HashMap<String,String>> data;
@@ -77,27 +71,6 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mGoToHandWrite = mainActivity.findViewById(R.id.goToHandwritebutton);
-        mGoToDiary = mainActivity.findViewById(R.id.goToDiarybutton);
-        mGoToOCR = mainActivity.findViewById(R.id.goToOCRbutton);
-        mLayout = mainActivity.findViewById(R.id.testConstraint);
-
-        mLayout.setBackgroundColor(0xFFFFFFFF);
-        mLayout.setVisibility(View.INVISIBLE);
-        if(mGoToHandWrite.isEnabled()){
-            mGoToHandWrite.setEnabled(false);
-            mGoToHandWrite.setVisibility(View.INVISIBLE);
-        }
-        if(mGoToDiary.isEnabled()){
-            mGoToDiary.setEnabled(false);
-            mGoToDiary.setVisibility(View.INVISIBLE);
-        }
-        if(mGoToOCR.isEnabled()){
-            mGoToOCR.setEnabled(false);
-            mGoToOCR.setVisibility(View.INVISIBLE);
-        }
-
         btnWriteTodayDiary = root.findViewById(R.id.btnWriteTodayDiary);
         btnWriteTodayDiary.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,8 +79,6 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        mBtnChange = root.findViewById(R.id.btnChange);
-        mBtnChange.setOnClickListener(btnChangeColorOnClick);
 
         // adapter
         mRecyclerView = root.findViewById(R.id.HistoryRecyclerview);
@@ -131,8 +102,9 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        doData();
 
+        doData();
+        history();
         myAdapter = new MyAdapter();
         mRecyclerView.setAdapter(myAdapter);
 
@@ -421,7 +393,7 @@ public class HomeFragment extends Fragment {
                 }else if(sqlReturn.LoginOption[position].equals("11")){
                     holder.imageView.setImageResource(R.drawable.random_icon);
                 }else if(sqlReturn.LoginOption[position].equals("42")){
-                    holder.imageView.setImageResource(R.drawable.random_icon);
+                    holder.imageView.setImageResource(R.drawable.handwrite);
                 }
             }else if(sqlReturn.model == 2){
                 if(sqlReturn.Option1[position].equals("1")){
@@ -443,7 +415,7 @@ public class HomeFragment extends Fragment {
                 }else if(sqlReturn.Option1[position].equals("11")){
                     holder.imageView.setImageResource(R.drawable.random_icon);
                 }else if(sqlReturn.Option1[position].equals("42")){
-                    holder.imageView.setImageResource(R.drawable.random_icon);
+                    holder.imageView.setImageResource(R.drawable.handwrite);
                 }
             }else if(sqlReturn.model == 3){
                 if(sqlReturn.Option2[position].equals("1")){
@@ -465,30 +437,10 @@ public class HomeFragment extends Fragment {
                 }else if(sqlReturn.Option2[position].equals("11")){
                     holder.imageView.setImageResource(R.drawable.random_icon);
                 }else if(sqlReturn.Option2[position].equals("42")){
-                    holder.imageView.setImageResource(R.drawable.random_icon);
+                    holder.imageView.setImageResource(R.drawable.handwrite);
                 }
             }else if(sqlReturn.model == 4){
-                if(sqlReturn.Option3[position].equals("1")){
-                    holder.imageView.setImageResource(R.drawable.japan_icon);
-                }else if(sqlReturn.Option3[position].equals("2")){
-                    holder.imageView.setImageResource(R.drawable.korea_icon);
-                }else if(sqlReturn.Option3[position].equals("4")){
-                    holder.imageView.setImageResource(R.drawable.taiwan_icon);
-                }else if(sqlReturn.Option3[position].equals("6")){
-                    holder.imageView.setImageResource(R.drawable.italy_icon);
-                }else if(sqlReturn.Option3[position].equals("7")){
-                    holder.imageView.setImageResource(R.drawable.france_icon);
-                }else if(sqlReturn.Option3[position].equals("8")){
-                    holder.imageView.setImageResource(R.drawable.china_icon);
-                }else if(sqlReturn.Option3[position].equals("9")){
-                    holder.imageView.setImageResource(R.drawable.kong_icon);
-                }else if(sqlReturn.Option3[position].equals("10")){
-                    holder.imageView.setImageResource(R.drawable.ider_icon);
-                }else if(sqlReturn.Option3[position].equals("11")){
-                    holder.imageView.setImageResource(R.drawable.random_icon);
-                }else if(sqlReturn.Option3[position].equals("42")){
-                    holder.imageView.setImageResource(R.drawable.random_icon);
-                }
+                holder.imageView.setImageResource(R.drawable.handwrite);
             }
 
             holder.textTitle.setText(data.get(position).get("textTitle"));
@@ -827,55 +779,5 @@ public class HomeFragment extends Fragment {
 
 
     //----------------------------------------------------------------------------------------------
-
-
-
-
-    //背景顏色切換
-    private View.OnClickListener btnChangeColorOnClick = new View.OnClickListener() {
-        public void onClick(View v) {
-            int iBackColorRedVal, iBackColorRedEnd;
-            if(!changeBtn){
-                mLayout.setVisibility(View.VISIBLE);
-                mGoToHandWrite.setEnabled(true);
-                mGoToHandWrite.setVisibility(View.VISIBLE);
-                mGoToDiary.setEnabled(true);
-                mGoToDiary.setVisibility(View.VISIBLE);
-                mGoToOCR.setEnabled(true);
-                mGoToOCR.setVisibility(View.VISIBLE);
-                changeBtn = true;
-            }else if(changeBtn == true){
-                mGoToHandWrite.setEnabled(false);
-                mGoToHandWrite.setVisibility(View.INVISIBLE);
-                mGoToDiary.setEnabled(false);
-                mGoToDiary.setVisibility(View.INVISIBLE);
-                mGoToOCR.setEnabled(false);
-                mGoToOCR.setVisibility(View.INVISIBLE);
-                changeBtn = false;
-            }
-            final int iBackColor =
-                    ((ColorDrawable)(mLayout.getBackground())).getColor();
-            iBackColorRedVal = (iBackColor & 0xFF);
-
-            if (iBackColorRedVal > 127)
-                iBackColorRedEnd = 0;
-            else
-                iBackColorRedEnd = 255;
-            ValueAnimator animScreenBackColor =
-                    ValueAnimator.ofInt(iBackColorRedVal, iBackColorRedEnd);
-            animScreenBackColor.setDuration(500);
-            animScreenBackColor.setInterpolator(new LinearInterpolator());
-            animScreenBackColor.start();
-            animScreenBackColor.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    int val = (Integer)animation.getAnimatedValue();
-
-                    mLayout.setBackgroundColor(
-                            iBackColor & 0x33000000 | val << 16 | val << 8 | val );
-                }
-            });
-        }
-    };
 
 }
