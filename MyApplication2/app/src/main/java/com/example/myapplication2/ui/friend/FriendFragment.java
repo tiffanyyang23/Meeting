@@ -64,7 +64,12 @@ public class FriendFragment extends Fragment {
 
         progressBarFriend = root.findViewById(R.id.progressBarFriend);
 
+        if(MainActivity.changeBtn == true){
+            MainActivity.changeBtn = false;
+        }
+
         searchFriendList();
+        searchFriend();
 
         RefreshLayoutFriend = root.findViewById(R.id.RefreshLayoutFriend);
         RefreshLayoutFriend.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -85,7 +90,7 @@ public class FriendFragment extends Fragment {
 
         mRecyclerView = root.findViewById(R.id.RecyclerView_1);
         progressBarFriend.setVisibility(View.VISIBLE);
-        searchFriend();
+
 
 
         return root;

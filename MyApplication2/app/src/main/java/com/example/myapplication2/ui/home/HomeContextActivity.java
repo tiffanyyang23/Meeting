@@ -166,7 +166,7 @@ public class HomeContextActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 proBarHomeContext.setVisibility(View.VISIBLE);
-                                //EditDiary();
+                                EditDiary();
                             }
                         }).setNegativeButton("cancel",null).create().show();
             }
@@ -233,20 +233,20 @@ public class HomeContextActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (status){
-                proBarHomeContext.setVisibility(View.INVISIBLE);
-                new AlertDialog.Builder(activity)
-                        .setTitle("日記修改失敗")
-                        .setMessage("請確認網路是否連通!!")
-                        .setPositiveButton("OK", null)
-                        .show();
-            }else {
+            if (!status){
                 proBarHomeContext.setVisibility(View.INVISIBLE);
                 Toast.makeText(activity, "修改成功", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(HomeContextActivity.this,MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("id",1);
                 startActivity(intent);
+            }else {
+                proBarHomeContext.setVisibility(View.INVISIBLE);
+                new AlertDialog.Builder(activity)
+                        .setTitle("日記修改失敗")
+                        .setMessage("請確認網路是否連通!!")
+                        .setPositiveButton("OK", null)
+                        .show();
             }
         }
     }
@@ -297,21 +297,20 @@ public class HomeContextActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (status){
-                // 假的有問題
-                new AlertDialog.Builder(activity)
-                        .setTitle("日記刪除失敗")
-                        .setMessage("請確認網路是否連通!!")
-                        .setPositiveButton("OK", null)
-                        .show();
-                proBarHomeContext.setVisibility(View.INVISIBLE);
-            }else {
+            if (!status){
                 proBarHomeContext.setVisibility(View.INVISIBLE);
                 Toast.makeText(activity, "刪除成功", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(HomeContextActivity.this,MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("id",1);
                 startActivity(intent);
+            }else {
+                new AlertDialog.Builder(activity)
+                        .setTitle("日記刪除失敗")
+                        .setMessage("請確認網路是否連通!!")
+                        .setPositiveButton("OK", null)
+                        .show();
+                proBarHomeContext.setVisibility(View.INVISIBLE);
             }
         }
     }

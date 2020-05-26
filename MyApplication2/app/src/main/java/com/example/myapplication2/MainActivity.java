@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout mLayout;
     private Button goToDiarybutton, goToOCRbutton, goToHandwritebutton, btnAnim;
-    private static boolean changeBtn = false;
+    public static boolean changeBtn = false;
     public static boolean login = false;
 
     @Override
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         goToDiary.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                changeBtn = false;
                 Intent registerIntent = new Intent(MainActivity.this, DiaryActivity.class);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
                 MainActivity.this.startActivity(registerIntent,options.toBundle());
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         goToHandWrite.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                changeBtn = false;
                 Intent registerIntent = new Intent(MainActivity.this, HandwriteActivity.class);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
                 MainActivity.this.startActivity(registerIntent,options.toBundle());

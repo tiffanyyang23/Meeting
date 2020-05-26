@@ -80,6 +80,10 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        if(MainActivity.changeBtn == true){
+            MainActivity.changeBtn = false;
+        }
+
         // adapter
         mRecyclerView = root.findViewById(R.id.HistoryRecyclerview);
         mRecyclerView.setHasFixedSize(true);
