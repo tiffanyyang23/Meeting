@@ -233,7 +233,7 @@ public class HomeContextActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (!status){
+            if (status){
                 proBarHomeContext.setVisibility(View.INVISIBLE);
                 Toast.makeText(activity, "修改成功", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(HomeContextActivity.this,MainActivity.class);
@@ -297,7 +297,7 @@ public class HomeContextActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (!status){
+            if (status){
                 proBarHomeContext.setVisibility(View.INVISIBLE);
                 Toast.makeText(activity, "刪除成功", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(HomeContextActivity.this,MainActivity.class);
