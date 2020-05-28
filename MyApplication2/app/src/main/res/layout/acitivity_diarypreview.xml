@@ -62,17 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="換主題"
-            android:textColor="#7DD8D3"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/btn_SaveEdit"
-            style="@style/btn_skip"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="儲存修改"
+            android:text="加主題"
             android:textColor="#7DD8D3"
             android:textSize="24sp" />
 
@@ -82,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="結束"
+            android:text="結束日記"
             android:textColor="#7DD8D3"
             android:textSize="24sp" />
     </LinearLayout>
