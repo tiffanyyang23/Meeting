@@ -68,11 +68,7 @@ public class DiaryEndActivity extends AppCompatActivity {
         imbtnReturnLast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editText3.getText().toString().equals(DiaryContext)){
-
-                }else {
-                    EditDiaryContext = editText3.getText().toString();
-                }
+                EditDiaryContext = editText3.getText().toString();
                 Intent intent = new Intent();
                 intent.setClass(DiaryEndActivity.this,DiaryPreviewActivity.class);
                 Bundle tagData = new Bundle();
@@ -151,13 +147,14 @@ public class DiaryEndActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (status){
+                DiaryPreviewActivity.totalPlus = "";
+                DiaryPreviewActivity.total = "";
+                DiaryValue.WhatLock = true;
                 Toast.makeText(activity, "日記新增成功", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(DiaryEndActivity.this, MainActivity.class);
                 intent.putExtra("id",1);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryEndActivity.this);
                 startActivity(intent,options.toBundle());
-                DiaryPreviewActivity.total = "";
-                DiaryPreviewActivity.totalPlus = "";
             }else {
                 new AlertDialog.Builder(activity)
                         .setTitle("伺服器擁擠中")

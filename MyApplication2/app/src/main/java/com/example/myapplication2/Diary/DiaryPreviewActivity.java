@@ -154,9 +154,9 @@ public class DiaryPreviewActivity extends AppCompatActivity{
         mEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String getTextView = textView.getText().toString();
                 Intent intent = new Intent(DiaryPreviewActivity.this, DiaryEndActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("total",textView.getText().toString());
+                intent.putExtra("total",getTextView);
                 intent.putExtra("1",tag1);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DiaryPreviewActivity.this);
                 startActivity(intent,options.toBundle());
