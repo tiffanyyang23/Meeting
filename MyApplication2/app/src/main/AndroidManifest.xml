@@ -15,9 +15,10 @@
         android:roundIcon="@drawable/ic_launcher_24dp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Login.FacebookLoginActivity"></activity>
         <activity
             android:name=".ui.friend.FriendListActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Diary.DiaryEndActivity"
             android:screenOrientation="portrait" />
@@ -63,6 +64,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Diary.DiaryWhatActivity"
+            android:label="@string/title_diary"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login.FbLoginActivity"
             android:label="@string/title_diary"
             android:screenOrientation="portrait" />
         <activity android:name=".SplashActivity">

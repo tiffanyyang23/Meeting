@@ -75,7 +75,7 @@
         android:enabled="true"
         android:text="請輸入您的日記內容"
         android:textColor="#7dd8d3"
-        android:textSize="35dp"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

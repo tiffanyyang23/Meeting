@@ -59,7 +59,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="0dp"
-            android:layout_height="130dp"
+            android:layout_height="120dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView">
@@ -69,39 +70,42 @@
 
             <Button
                 android:id="@+id/searchBtnMood"
+                style="@style/btn_primary"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
-                android:background="#fff"
+                android:backgroundTint="#FFEDED"
                 android:text="主題"
                 android:textColor="#77D8D5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintHorizontal_bias="0.04"
                 app:layout_constraintStart_toEndOf="@+id/searchBtnTag"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.16" />
+                app:layout_constraintVertical_bias="0.177" />
 
             <Button
                 android:id="@+id/searchBtnHandWrite"
+                style="@style/btn_primary"
                 android:layout_width="70dp"
-                android:layout_height="31dp"
-                android:background="#fff"
+                android:layout_height="30dp"
+                android:backgroundTint="#FFEDED"
                 android:text="手寫日記"
                 android:textColor="#77D8D5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.352"
+                app:layout_constraintHorizontal_bias="0.296"
                 app:layout_constraintStart_toEndOf="@+id/searchBtnTag"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.161" />
+                app:layout_constraintVertical_bias="0.179" />
 
             <Button
                 android:id="@+id/searchBtnTag"
+                style="@style/btn_primary"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="84dp"
-                android:background="#fff"
+                android:backgroundTint="#FFEDED"
                 android:text="心情"
                 android:textColor="#77D8D5"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -113,77 +117,82 @@
 
             <Button
                 android:id="@+id/searchBtn1"
+                style="@style/btn_primary"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:layout_marginBottom="24dp"
-                android:background="#FDBCD0"
+                android:backgroundTint="#FDBCD0"
                 android:text="晴天"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.045"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.043"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.8" />
 
             <Button
                 android:id="@+id/searchBtn2"
+                style="@style/btn_primary"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:background="#FDD3BC"
+                android:backgroundTint="#FDD3BC"
                 android:text="時晴"
                 android:textColor="#fff"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/searchBtn1"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.05"
-                app:layout_constraintStart_toEndOf="@+id/searchBtn1"
-                app:layout_constraintTop_toTopOf="@+id/searchBtn1"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintHorizontal_bias="0.27"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/buttonTest"
+                app:layout_constraintVertical_bias="0.8" />
 
             <Button
                 android:id="@+id/searchBtn3"
+                style="@style/btn_primary"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:background="#EDE400"
+                android:backgroundTint="#EDE400"
                 android:text="多雲"
                 android:textColor="#fff"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/searchBtn2"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.316"
-                app:layout_constraintStart_toEndOf="@+id/searchBtn1"
-                app:layout_constraintTop_toTopOf="@+id/searchBtn2"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.8" />
 
             <Button
                 android:id="@+id/searchBtn4"
+                style="@style/btn_primary"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:background="#A3FCAA"
+                android:backgroundTint="#A3FCAA"
                 android:text="陣雨"
                 android:textColor="#fff"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/searchBtn3"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.57"
-                app:layout_constraintStart_toEndOf="@+id/searchBtn1"
-                app:layout_constraintTop_toTopOf="@+id/searchBtn3"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintHorizontal_bias="0.73"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.8" />
 
             <Button
                 android:id="@+id/searchBtn5"
+                style="@style/btn_primary"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:background="#A3FCAA"
+                android:backgroundTint="#A3FCAA"
                 android:text="雷雨"
                 android:textColor="#fff"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/searchBtn4"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.821"
-                app:layout_constraintStart_toEndOf="@+id/searchBtn1"
-                app:layout_constraintTop_toTopOf="@+id/searchBtn4"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintHorizontal_bias="0.96"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.8" />
 
             <Button
                 android:id="@+id/buttonTest"
@@ -205,14 +214,15 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:background="#77D8D5">
 
                 <ImageView
                     android:id="@+id/imageView7"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="98dp"
+                    android:layout_height="98dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.69"
@@ -264,16 +274,19 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout8"
             android:layout_width="0dp"
-            android:layout_height="343dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/RefreshLayoutHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="358dp"
+                android:layout_height="353dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
