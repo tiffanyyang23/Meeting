@@ -13,6 +13,8 @@
     <string name="prompt_password">密碼</string>
     <string name="action_sign_in">登入</string>
     <string name="action_sign_in_short">登入</string>
+    <string name="facebook_app_id">[APP_ID]</string>
+    <string name="fb_login_protocol_scheme">fb[APP_ID]</string>
 
 
 </resources>

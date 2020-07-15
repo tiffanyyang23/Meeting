@@ -5,10 +5,12 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -28,6 +30,15 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+
 public class LoginActivity extends AppCompatActivity {
     private static ProgressBar pr1;
     private String mail;
@@ -35,6 +46,11 @@ public class LoginActivity extends AppCompatActivity {
     //public static String GetUserID;
     public static boolean a = false;
     private Button btnLogin;
+    private ImageButton imbtnFacebook;
+    //private ImageButton imbtnGoogle;
+    SignInButton sign_in_button;
+    int RC_SIGN_IN = 100; //自己定義的int在onActivityResult才可以抓到是利用Google登入的
+    GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +74,75 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
+        imbtnFacebook = findViewById(R.id.imbtnFacebook);
+        imbtnFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent faceBookIntent = new Intent(LoginActivity.this,FacebookLoginActivity.class);
+                LoginActivity.this.startActivity(faceBookIntent);
+            }
+        });
 
+        //imbtnGoogle = findViewById(R.id.imbtnGoogle);
+//        imbtnGoogle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                switch (v.getId()){
+//                    case R.id.imbtnGoogle:
+//                        signIn();
+//                        break;
+//                }
+//            }
+//        });
+        sign_in_button = findViewById(R.id.sign_in_button);
+        sign_in_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()){
+                    case R.id.sign_in_button:
+                        signIn();
+                        break;
+                }
+            }
+        });
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+    }
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+
+    }
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // 取得使用者的資料，取得後再看你想要對這些資料做什麼用途
+            Log.d("111","handleSignInResult getName:"+account.getDisplayName());
+            Log.d("2222","handleSignInResult getEmail:"+account.getEmail());
+            Intent intent=new Intent(LoginActivity.this,GoogleLoginActivity.class);
+            startActivity(intent);
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("3333", "signInResult:failed code=" + e.getStatusCode());
+
+        }
     }
     public void login(){
         final EditText edUserEmail = findViewById(R.id.userEmail);

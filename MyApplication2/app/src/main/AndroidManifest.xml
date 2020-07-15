@@ -15,6 +15,28 @@
         android:roundIcon="@drawable/ic_launcher_24dp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Login.GoogleLoginActivity"></activity>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Login.FacebookLoginActivity"></activity>
         <activity
             android:name=".ui.friend.FriendListActivity"
@@ -64,10 +86,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Diary.DiaryWhatActivity"
-            android:label="@string/title_diary"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Login.FbLoginActivity"
             android:label="@string/title_diary"
             android:screenOrientation="portrait" />
         <activity android:name=".SplashActivity">
